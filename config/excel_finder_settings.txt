@@ -1,0 +1,11 @@
+last_directory=F:/Workspaces/design_Jinsu_Trunk/Trunk/Shared/Data/JSON
+search_mode_exact=False
+worker_count=20
+apply_exception=True
+case_sensitive=False
+expanded_paths=JSON
+search_keyword=1001
+filter_enabled=False
+format_extensions=.csv,.doc,.docx,.hwp,.hwx,.json,.log,.md,.pdf,.ppt,.pptx,.tsv,.txt,.xls,.xlsm,.xlsx,.xml,.yaml,.yml
+format_extensions_known=.csv,.doc,.docx,.hwp,.hwx,.json,.log,.md,.pdf,.ppt,.pptx,.tsv,.txt,.xls,.xlsm,.xlsx,.xml,.yaml,.yml
+column_widths=300,60,710,0,0

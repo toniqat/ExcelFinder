@@ -1,0 +1,1008 @@
+{
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_Damage_Evade_Right.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_Damage_Evade_Right.json",
+    "file_size": 1544,
+    "last_modified": 1768373543.216904,
+    "sheet_names": [
+      "value",
+      "KnightMale_DualSwords_Damage_Evade_Right"
+    ],
+    "cached_time": 1774343500.702287,
+    "file_hash": "502f2464be956bb58d7f4d6e758c0262",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_KnockBackEvadeSkillR.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_KnockBackEvadeSkillR.json",
+    "file_size": 1215,
+    "last_modified": 1768373543.264905,
+    "sheet_names": [
+      "value",
+      "KnightMale_DualSwords_KnockBackEvadeSkillR"
+    ],
+    "cached_time": 1774343500.706799,
+    "file_hash": "538c8b50b76c7e1fc5d718140899df6f",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillDualSwordsChainSlash03_Trait01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillDualSwordsChainSlash03_Trait01.json",
+    "file_size": 2356,
+    "last_modified": 1768373543.3049057,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "KnightMale_DualSwords_SkillDualSwordsChainSlash03_Trait01"
+    ],
+    "cached_time": 1774343500.7108,
+    "file_hash": "54db40800a01e6c0b32237a100896e8c",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillDualSwordsSlash_Trait01_2.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillDualSwordsSlash_Trait01_2.json",
+    "file_size": 1904,
+    "last_modified": 1768373543.3489065,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "KnightMale_DualSwords_SkillDualSwordsSlash_Trait01_2"
+    ],
+    "cached_time": 1774343500.717316,
+    "file_hash": "c81e3af637ddae7cb09865fb4460b942",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillEscapeEvadeR.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillEscapeEvadeR.json",
+    "file_size": 1197,
+    "last_modified": 1768373543.3964138,
+    "sheet_names": [
+      "value",
+      "KnightMale_DualSwords_SkillEscapeEvadeR"
+    ],
+    "cached_time": 1774343500.720815,
+    "file_hash": "79b47a76514880a2299cf67f61eb9c11",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillStandEvadeR.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_DualSwords_SkillStandEvadeR.json",
+    "file_size": 1217,
+    "last_modified": 1768373543.4254143,
+    "sheet_names": [
+      "value",
+      "KnightMale_DualSwords_SkillStandEvadeR"
+    ],
+    "cached_time": 1774343500.75787,
+    "file_hash": "798594c4714e89e19bc570334813619c",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_Sword_WeaponChangeSkill02.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\KnightMale_Sword_WeaponChangeSkill02.json",
+    "file_size": 2156,
+    "last_modified": 1768907182.5656273,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "KnightMale_Sword_WeaponChangeSkill02"
+    ],
+    "cached_time": 1774343500.765878,
+    "file_hash": "a23beb1d116aa78d1dcaa006b370fde0",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Kraken_ShortLeg_Battle_Attack01_02_Phase01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Kraken_ShortLeg_Battle_Attack01_02_Phase01.json",
+    "file_size": 5007,
+    "last_modified": 1768373543.8138678,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Kraken_ShortLeg_Battle_Attack01_02_Phase01"
+    ],
+    "cached_time": 1774343500.772378,
+    "file_hash": "f43e9380426b4cd2ead9589c3c5f6abe",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_Attack03Nor_End.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_Attack03Nor_End.json",
+    "file_size": 2966,
+    "last_modified": 1773624060.5017684,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Lion_Boss_Battle_Attack03Nor_End"
+    ],
+    "cached_time": 1774343500.779391,
+    "file_hash": "9eb9fc485cda34c1b389b8ede72e149c",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_Attack04Str_Right_to_Left.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_Attack04Str_Right_to_Left.json",
+    "file_size": 1922,
+    "last_modified": 1773919635.9379964,
+    "sheet_names": [
+      "value",
+      "Lion_Boss_Battle_Attack04Str_Right_to_Left"
+    ],
+    "cached_time": 1774343500.784896,
+    "file_hash": "26bccd37339357f23d401e88b5a7bdd8",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_RightStep.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_RightStep.json",
+    "file_size": 1134,
+    "last_modified": 1773624060.601892,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Lion_Boss_Battle_RightStep"
+    ],
+    "cached_time": 1774343500.791402,
+    "file_hash": "4192b995387e3e33d6770e8a77546b49",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_StrongSkill02_04.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Lion_Boss_Battle_StrongSkill02_04.json",
+    "file_size": 2995,
+    "last_modified": 1773919635.9839945,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Lion_Boss_Battle_StrongSkill02_04"
+    ],
+    "cached_time": 1774343500.796909,
+    "file_hash": "2736632e7b446ca9ed1bcd669c11d57e",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MonUnisex_Death_Execution_Left01_Knight_DualSwords.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MonUnisex_Death_Execution_Left01_Knight_DualSwords.json",
+    "file_size": 2992,
+    "last_modified": 1768373544.030406,
+    "sheet_names": [
+      "value",
+      "MonUnisex_Death_Execution_Left01_Knight_DualSwords"
+    ],
+    "cached_time": 1774343500.807423,
+    "file_hash": "fd58df90d7698536a1569e2e3adf9090",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MonUnisex_Death_Execution_Right02_Assassin_Dagger.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MonUnisex_Death_Execution_Right02_Assassin_Dagger.json",
+    "file_size": 4498,
+    "last_modified": 1768373544.0744066,
+    "sheet_names": [
+      "value",
+      "MonUnisex_Death_Execution_Right02_Assassin_Dagger"
+    ],
+    "cached_time": 1774343500.817432,
+    "file_hash": "c426749fa71f8ae71c14f7fe8eb0f221",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Axe_FinishCombat.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Axe_FinishCombat.json",
+    "file_size": 1424,
+    "last_modified": 1768373544.112408,
+    "sheet_names": [
+      "value",
+      "MountainFemale_Axe_FinishCombat"
+    ],
+    "cached_time": 1774343500.822931,
+    "file_hash": "40768b44520b0ea7e9401d7920d41e8b",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Axe_WeaponChangeSkill01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Axe_WeaponChangeSkill01.json",
+    "file_size": 2405,
+    "last_modified": 1769164091.6999903,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainFemale_Axe_WeaponChangeSkill01"
+    ],
+    "cached_time": 1774343500.828944,
+    "file_hash": "16f53ca55e437b406e61deee6fb3955e",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_Execution_Surpriesd_LaydownAttack01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_Execution_Surpriesd_LaydownAttack01.json",
+    "file_size": 3624,
+    "last_modified": 1768902945.461957,
+    "sheet_names": [
+      "value",
+      "MountainFemale_Chain_Execution_Surpriesd_LaydownAttack01"
+    ],
+    "cached_time": 1774343500.837955,
+    "file_hash": "2fff056f174d6fc0be898e1803ff9300",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_SkillBarrage_Trait01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_SkillBarrage_Trait01.json",
+    "file_size": 3860,
+    "last_modified": 1768902945.534726,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainFemale_Chain_SkillBarrage_Trait01"
+    ],
+    "cached_time": 1774343500.847486,
+    "file_hash": "5baf384b3bff23030ea044c487831a13",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_SkillStandEvadeR.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Chain_SkillStandEvadeR.json",
+    "file_size": 1286,
+    "last_modified": 1768902945.6067884,
+    "sheet_names": [
+      "value",
+      "MountainFemale_Chain_SkillStandEvadeR"
+    ],
+    "cached_time": 1774343500.858501,
+    "file_hash": "16eb3e876b005ec16c0fcd12cc455a78",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Emotion_Laydown.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_Emotion_Laydown.json",
+    "file_size": 8163,
+    "last_modified": 1768373544.2233152,
+    "sheet_names": [
+      "value",
+      "MountainFemale_Emotion_Laydown"
+    ],
+    "cached_time": 1774343500.866517,
+    "file_hash": "fc0ef85d71da0f2bc0f4b4af5249cf74",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_FinishComboAttack_02_1.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_FinishComboAttack_02_1.json",
+    "file_size": 2701,
+    "last_modified": 1768373544.2800753,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainFemale_FinishComboAttack_02_1"
+    ],
+    "cached_time": 1774343500.873018,
+    "file_hash": "bb8ef188edd8177eb55fda341738c7d9",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_NormalAttackPL_01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_NormalAttackPL_01.json",
+    "file_size": 2530,
+    "last_modified": 1768373544.3252022,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainFemale_NormalAttackPL_01"
+    ],
+    "cached_time": 1774343500.878032,
+    "file_hash": "8126ba03579f001d1159f07619548f9d",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_ParrySuccess_ParryGuide.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_ParrySuccess_ParryGuide.json",
+    "file_size": 265,
+    "last_modified": 1772619037.6970775,
+    "sheet_names": [
+      "value",
+      "MountainFemale_ParrySuccess_ParryGuide"
+    ],
+    "cached_time": 1774343500.882531,
+    "file_hash": "4bcc48092a36d68391573954e916f331",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_ShortEvadeL_ClassWeapon.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_ShortEvadeL_ClassWeapon.json",
+    "file_size": 948,
+    "last_modified": 1768373544.3862112,
+    "sheet_names": [
+      "value",
+      "MountainFemale_ShortEvadeL_ClassWeapon"
+    ],
+    "cached_time": 1774343500.886547,
+    "file_hash": "a407738ad7e884f2993215b2504b69a8",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_SkillFullChargingAttack_Success.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainFemale_SkillFullChargingAttack_Success.json",
+    "file_size": 2308,
+    "last_modified": 1768373544.425156,
+    "sheet_names": [
+      "value",
+      "MountainFemale_SkillFullChargingAttack_Success"
+    ],
+    "cached_time": 1774343500.891046,
+    "file_hash": "6de52df17cbaa418b200e6797127e09a",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Assassination.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Assassination.json",
+    "file_size": 3008,
+    "last_modified": 1768373544.470323,
+    "sheet_names": [
+      "value",
+      "MountainMale_Assassination"
+    ],
+    "cached_time": 1774343500.897064,
+    "file_hash": "832351816e5bead85d2be3b8644b35c8",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Axe_SkillPullingAttack.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Axe_SkillPullingAttack.json",
+    "file_size": 1683,
+    "last_modified": 1768373544.5144632,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_Axe_SkillPullingAttack"
+    ],
+    "cached_time": 1774343500.902564,
+    "file_hash": "d211878ace5a0d2c7afe1c4055596cfa",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_DashAttackStrong.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_DashAttackStrong.json",
+    "file_size": 2404,
+    "last_modified": 1768373544.558319,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_Chain_DashAttackStrong"
+    ],
+    "cached_time": 1774343500.910081,
+    "file_hash": "4b974df1dd7a2b2f28813375656ed500",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_ParryComboAttack01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_ParryComboAttack01.json",
+    "file_size": 2401,
+    "last_modified": 1768373544.619459,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_Chain_ParryComboAttack01"
+    ],
+    "cached_time": 1774343500.915591,
+    "file_hash": "c019b42561c1d5c09845a9abee1b84ff",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillEscapeEvadeF.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillEscapeEvadeF.json",
+    "file_size": 1274,
+    "last_modified": 1768373544.663865,
+    "sheet_names": [
+      "value",
+      "MountainMale_Chain_SkillEscapeEvadeF"
+    ],
+    "cached_time": 1774343500.920592,
+    "file_hash": "801f323e7cd6ae5c76dae498c2e1f7d7",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillOnslaught_Trait01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillOnslaught_Trait01.json",
+    "file_size": 3444,
+    "last_modified": 1768373544.702124,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_Chain_SkillOnslaught_Trait01"
+    ],
+    "cached_time": 1774343500.924091,
+    "file_hash": "6fc9f2900b5936890f1b2e12750be0fa",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillStandEvadeR.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Chain_SkillStandEvadeR.json",
+    "file_size": 1284,
+    "last_modified": 1768373544.7381248,
+    "sheet_names": [
+      "value",
+      "MountainMale_Chain_SkillStandEvadeR"
+    ],
+    "cached_time": 1774343500.930607,
+    "file_hash": "8e7f305101ce5107bdd2764f682047d0",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Emotion_Angry.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_Emotion_Angry.json",
+    "file_size": 6220,
+    "last_modified": 1768373544.7861264,
+    "sheet_names": [
+      "value",
+      "MountainMale_Emotion_Angry"
+    ],
+    "cached_time": 1774343500.936117,
+    "file_hash": "ec7820e33541595cb12b0ba4b8469120",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_EvadeComboAttack.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_EvadeComboAttack.json",
+    "file_size": 1683,
+    "last_modified": 1768373544.8135817,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_EvadeComboAttack"
+    ],
+    "cached_time": 1774343500.939121,
+    "file_hash": "94b8bfde967ab406aa7f0884cb4bd0a7",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_ExtraAttack_StandAttack02.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_ExtraAttack_StandAttack02.json",
+    "file_size": 3753,
+    "last_modified": 1768373544.8364856,
+    "sheet_names": [
+      "value",
+      "MountainMale_ExtraAttack_StandAttack02"
+    ],
+    "cached_time": 1774343500.94163,
+    "file_hash": "30cacf467236e6e3013e6eeec32a091b",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_FinishComboAttack_04_1.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_FinishComboAttack_04_1.json",
+    "file_size": 2623,
+    "last_modified": 1768373544.8589292,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_FinishComboAttack_04_1"
+    ],
+    "cached_time": 1774343500.945642,
+    "file_hash": "88d36395aeb88dad1671baffd2536b6d",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_NormalAttackPL_01.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\MountainMale_NormalAttackPL_01.json",
+    "file_size": 2533,
+    "last_modified": 1768373544.8951685,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "MountainMale_NormalAttackPL_01"
+    ],
+    "cached_time": 1774343500.973674,
+    "file_hash": "7662547c7ef401dcb2ce867564c8b74e",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Boss_Battle_Dash.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Boss_Battle_Dash.json",
+    "file_size": 1150,
+    "last_modified": 1771848619.0072854,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Boss_Battle_Dash"
+    ],
+    "cached_time": 1774343500.985193,
+    "file_hash": "327a18488390a15b315815f19d4c8c59",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_Attack01_2P.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_Attack01_2P.json",
+    "file_size": 2559,
+    "last_modified": 1771848619.2537947,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Carver_Battle_Attack01_2P"
+    ],
+    "cached_time": 1774343500.995709,
+    "file_hash": "d6eedf59c56182b0ba7ed5fea8774127",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_StrongSkill04_02.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_StrongSkill04_02.json",
+    "file_size": 2691,
+    "last_modified": 1771848619.5218923,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Carver_Battle_StrongSkill04_02"
+    ],
+    "cached_time": 1774343501.008725,
+    "file_hash": "ae27374c10f6bc77f9fdd14c76ee9702",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_Threat04_2P.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Carver_Battle_Threat04_2P.json",
+    "file_size": 2075,
+    "last_modified": 1771848619.6544,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Carver_Battle_Threat04_2P"
+    ],
+    "cached_time": 1774343501.01774,
+    "file_hash": "4615c9de8a5ebae033c03316d4587da0",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Elite_Battle_NormalSkill02L_02Nor_NEW.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Elite_Battle_NormalSkill02L_02Nor_NEW.json",
+    "file_size": 1846,
+    "last_modified": 1768806826.0237222,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Elite_Battle_NormalSkill02L_02Nor_NEW"
+    ],
+    "cached_time": 1774343501.02975,
+    "file_hash": "0e20e4ccb829503a0b838fda1d3ec364",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Elite_Battle_StrongSkill04_03.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Elite_Battle_StrongSkill04_03.json",
+    "file_size": 3766,
+    "last_modified": 1771848619.8209126,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Elite_Battle_StrongSkill04_03"
+    ],
+    "cached_time": 1774343501.037765,
+    "file_hash": "81f4a7d8b284f7c8076ed5eb630618f4",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Guard_Left_Normal.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Guard_Left_Normal.json",
+    "file_size": 829,
+    "last_modified": 1771848619.877915,
+    "sheet_names": [
+      "value",
+      "OneHandSword_Guard_Left_Normal"
+    ],
+    "cached_time": 1774343501.047787,
+    "file_hash": "7c3428685e1fae1663857f5f0c5f983d",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Normal_Battle_NormalSkill01Nor_NEW.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\OneHandSword_Normal_Battle_NormalSkill01Nor_NEW.json",
+    "file_size": 4553,
+    "last_modified": 1771834261.2598307,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "OneHandSword_Normal_Battle_NormalSkill01Nor_NEW"
+    ],
+    "cached_time": 1774343501.053787,
+    "file_hash": "e93b8407583e3bb97cbde80378beec11",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_Attack01Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_Attack01Nor.json",
+    "file_size": 1616,
+    "last_modified": 1768373545.5733652,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Sarissa_Boss_Battle_Attack01Nor"
+    ],
+    "cached_time": 1774343501.059803,
+    "file_hash": "42a328a47e5da82b894bfba287144b0a",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_NormalSkill01_03Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_NormalSkill01_03Nor.json",
+    "file_size": 1373,
+    "last_modified": 1768373545.6658802,
+    "sheet_names": [
+      "value",
+      "Sarissa_Boss_Battle_NormalSkill01_03Nor"
+    ],
+    "cached_time": 1774343501.063805,
+    "file_hash": "8f9e2102cef6fa61c693cea3ea7ca6b5",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_StrongSkill02Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_StrongSkill02Str.json",
+    "file_size": 2775,
+    "last_modified": 1768373545.6948802,
+    "sheet_names": [
+      "value",
+      "Sarissa_Boss_Battle_StrongSkill02Str"
+    ],
+    "cached_time": 1774343501.06882,
+    "file_hash": "7f366a5b87b9a40ff9feae2dfba41fd3",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_SuperSkill05.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Boss_Battle_SuperSkill05.json",
+    "file_size": 6261,
+    "last_modified": 1768373545.7438812,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Sarissa_Boss_Battle_SuperSkill05"
+    ],
+    "cached_time": 1774343501.079336,
+    "file_hash": "c9d833222dbc33fb44925701f7b463d2",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Elite_Battle_StrongSkill02_02Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Elite_Battle_StrongSkill02_02Str.json",
+    "file_size": 2232,
+    "last_modified": 1768373545.852883,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Sarissa_Elite_Battle_StrongSkill02_02Str"
+    ],
+    "cached_time": 1774343501.083835,
+    "file_hash": "92947e2d2547bd99f46a70d9ccf11631",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Guard_Front_Strong.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Guard_Front_Strong.json",
+    "file_size": 1247,
+    "last_modified": 1768373545.883887,
+    "sheet_names": [
+      "value",
+      "Sarissa_Guard_Front_Strong"
+    ],
+    "cached_time": 1774343501.088349,
+    "file_hash": "058ddd2d6afff9f8fd84dc1038ab0c32",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Normal_Battle_Attack05_01Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Normal_Battle_Attack05_01Nor.json",
+    "file_size": 2431,
+    "last_modified": 1768373545.9142363,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Sarissa_Normal_Battle_Attack05_01Nor"
+    ],
+    "cached_time": 1774343501.091848,
+    "file_hash": "d44348b47dedb84905169d9f5d525acf",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Normal_Battle_NormalSkill01_03Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Sarissa_Normal_Battle_NormalSkill01_03Nor.json",
+    "file_size": 1372,
+    "last_modified": 1768373545.9472365,
+    "sheet_names": [
+      "value",
+      "Sarissa_Normal_Battle_NormalSkill01_03Nor"
+    ],
+    "cached_time": 1774343501.09586,
+    "file_hash": "91beb33a74ef2ee4ea2b7526ad0203ae",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Boss_Battle_NormalSkill01_01Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Boss_Battle_NormalSkill01_01Nor.json",
+    "file_size": 102,
+    "last_modified": 1768373545.9862373,
+    "sheet_names": [
+      "Shadowcat01_Boss_Battle_NormalSkill01_01Nor"
+    ],
+    "cached_time": 1774343501.101365,
+    "file_hash": "466eb07e2a8a0145e8a315c836837b19",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Boss_Battle_StrongSkill01_02Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Boss_Battle_StrongSkill01_02Str.json",
+    "file_size": 2852,
+    "last_modified": 1768373546.0112374,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Shadowcat01_Boss_Battle_StrongSkill01_02Str"
+    ],
+    "cached_time": 1774343501.105877,
+    "file_hash": "e93a285f4efd71f692d0fe3ced2b02e1",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Normal_Damage_RightWeak02.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Shadowcat01_Normal_Damage_RightWeak02.json",
+    "file_size": 1148,
+    "last_modified": 1768373546.081854,
+    "sheet_names": [
+      "value",
+      "Shadowcat01_Normal_Damage_RightWeak02"
+    ],
+    "cached_time": 1774343501.110382,
+    "file_hash": "ab042abe30012e0c3dd1f99efdbca5e5",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_Attack01_01Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_Attack01_01Nor.json",
+    "file_size": 2122,
+    "last_modified": 1768373546.1182084,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_Boss_Battle_Attack01_01Nor"
+    ],
+    "cached_time": 1774343501.115395,
+    "file_hash": "b391c51f7bf79200a6435fbf6fffa66a",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_NormalSkill01_01Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_NormalSkill01_01Str.json",
+    "file_size": 2334,
+    "last_modified": 1768373546.1425495,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_Boss_Battle_NormalSkill01_01Str"
+    ],
+    "cached_time": 1774343501.119394,
+    "file_hash": "8c9253d56b06d6fa076dfa4170751322",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_SuperSkill01_01Sup.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Boss_Battle_SuperSkill01_01Sup.json",
+    "file_size": 978,
+    "last_modified": 1768373546.185754,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_Boss_Battle_SuperSkill01_01Sup"
+    ],
+    "cached_time": 1774343501.12841,
+    "file_hash": "999de4da3764f29295621dd9137f8a13",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Elite_Battle_StrongSkill01_01Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Elite_Battle_StrongSkill01_01Str.json",
+    "file_size": 1136,
+    "last_modified": 1768373546.244718,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_Elite_Battle_StrongSkill01_01Str"
+    ],
+    "cached_time": 1774343501.136418,
+    "file_hash": "0105c94452e469e737a60d65ee25e72d",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_EssosSell_Battle_SuperSkill01_01Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_EssosSell_Battle_SuperSkill01_01Str.json",
+    "file_size": 953,
+    "last_modified": 1768373546.2965353,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_EssosSell_Battle_SuperSkill01_01Str"
+    ],
+    "cached_time": 1774343501.139418,
+    "file_hash": "73fc14ce71339798a51dbe20a524f3af",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Guard_Left_Normal.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Guard_Left_Normal.json",
+    "file_size": 910,
+    "last_modified": 1768373546.326979,
+    "sheet_names": [
+      "value",
+      "TwinAxe_Guard_Left_Normal"
+    ],
+    "cached_time": 1774343501.143929,
+    "file_hash": "32f7c6db173196a2e0a7826e1403d615",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Normal_Battle_NormalSkill01_01Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\TwinAxe_Normal_Battle_NormalSkill01_01Nor.json",
+    "file_size": 2336,
+    "last_modified": 1768373546.3714898,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "TwinAxe_Normal_Battle_NormalSkill01_01Nor"
+    ],
+    "cached_time": 1774343501.150444,
+    "file_hash": "222100f911108ba8826c07935b793128",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Battle_Skill01_Combo_Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Battle_Skill01_Combo_Nor.json",
+    "file_size": 3499,
+    "last_modified": 1768373546.4127805,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Unicorn_Boss_Battle_Skill01_Combo_Nor"
+    ],
+    "cached_time": 1774343501.15495,
+    "file_hash": "7c33b52030c7cd04ce9594d4b6972726",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Battle_Skill06_180_L_Str.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Battle_Skill06_180_L_Str.json",
+    "file_size": 1572,
+    "last_modified": 1768373546.4461832,
+    "sheet_names": [
+      "value",
+      "Unicorn_Boss_Battle_Skill06_180_L_Str"
+    ],
+    "cached_time": 1774343501.159461,
+    "file_hash": "86e926895315293fc463f25de0c6b129",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Damage_Staggering_Back_Root.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Unicorn_Boss_Damage_Staggering_Back_Root.json",
+    "file_size": 3410,
+    "last_modified": 1768373546.4765344,
+    "sheet_names": [
+      "value",
+      "Unicorn_Boss_Damage_Staggering_Back_Root"
+    ],
+    "cached_time": 1774343501.163961,
+    "file_hash": "3a12b9493e142d6cb76d9dbf814d14ad",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Boss_Battle_Dash.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Boss_Battle_Dash.json",
+    "file_size": 1206,
+    "last_modified": 1768373546.5269606,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Warhammer_Boss_Battle_Dash"
+    ],
+    "cached_time": 1774343501.169976,
+    "file_hash": "67fc8bbc69fc1ca3cb0877cd0aca8b47",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Boss_Battle_NormalSkill04_02Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Boss_Battle_NormalSkill04_02Nor.json",
+    "file_size": 3295,
+    "last_modified": 1768373546.5659616,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Warhammer_Boss_Battle_NormalSkill04_02Nor"
+    ],
+    "cached_time": 1774343501.173978,
+    "file_hash": "ecf95b6d1fdc493d40257664946325a3",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_Attack04_03Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_Attack04_03Nor.json",
+    "file_size": 2257,
+    "last_modified": 1768373546.6036088,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "Warhammer_Elite_Battle_Attack04_03Nor"
+    ],
+    "cached_time": 1774343501.179993,
+    "file_hash": "1583352cfe6b5f8da0ea59d326197fa5",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_ParryGuide_Hit.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_ParryGuide_Hit.json",
+    "file_size": 1624,
+    "last_modified": 1772006279.323464,
+    "sheet_names": [
+      "value",
+      "Warhammer_Elite_Battle_ParryGuide_Hit"
+    ],
+    "cached_time": 1774343501.186003,
+    "file_hash": "185ee7fb4c23f1ac0289f74ed9e339ad",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_SuperSkill02_01Sup.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\Warhammer_Elite_Battle_SuperSkill02_01Sup.json",
+    "file_size": 3354,
+    "last_modified": 1768373546.691199,
+    "sheet_names": [
+      "value",
+      "Warhammer_Elite_Battle_SuperSkill02_01Sup"
+    ],
+    "cached_time": 1774343501.190509,
+    "file_hash": "f7197832be508d259b971f2102088d75",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBareHand01_Battle_LeftStep.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBareHand01_Battle_LeftStep.json",
+    "file_size": 890,
+    "last_modified": 1768373546.742803,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightBareHand01_Battle_LeftStep"
+    ],
+    "cached_time": 1774343501.195517,
+    "file_hash": "55179ea0db28dec68cf1e2ff97058409",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBarehand02_Normal_Battle_NormalSkill02Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBarehand02_Normal_Battle_NormalSkill02Nor.json",
+    "file_size": 2697,
+    "last_modified": 1768373546.7818036,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightBarehand02_Normal_Battle_NormalSkill02Nor"
+    ],
+    "cached_time": 1774343501.200522,
+    "file_hash": "726415d3de4c78e4260e80425865c85e",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBarehand03_Elite_Battle_Skill02_01Nor_Combo.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightBarehand03_Elite_Battle_Skill02_01Nor_Combo.json",
+    "file_size": 2840,
+    "last_modified": 1768373546.8187952,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightBarehand03_Elite_Battle_Skill02_01Nor_Combo"
+    ],
+    "cached_time": 1774343501.206538,
+    "file_hash": "0d6967259f4f34c4a26fd4ba98697cb0",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightCrawl_Normal_Battle_SuperSkill01_02.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightCrawl_Normal_Battle_SuperSkill01_02.json",
+    "file_size": 8561,
+    "last_modified": 1768373546.8714905,
+    "sheet_names": [
+      "value",
+      "WightCrawl_Normal_Battle_SuperSkill01_02"
+    ],
+    "cached_time": 1774343501.212539,
+    "file_hash": "ab39d4b231f2fedc30ec4955c0d1ed72",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightGrapple_Elite_Battle_SuperSkill01_04Test.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightGrapple_Elite_Battle_SuperSkill01_04Test.json",
+    "file_size": 3952,
+    "last_modified": 1768373546.9468699,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightGrapple_Elite_Battle_SuperSkill01_04Test"
+    ],
+    "cached_time": 1774343501.219557,
+    "file_hash": "3e1a26955444af088aea3b109bc67012",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightOneHand02_Battle_RightStep.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightOneHand02_Battle_RightStep.json",
+    "file_size": 885,
+    "last_modified": 1768373546.9841664,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightOneHand02_Battle_RightStep"
+    ],
+    "cached_time": 1774343501.224054,
+    "file_hash": "204ab3a8fd3d940407ca93f306900e66",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightOneHandAxe01_Normal_Battle_Attack02Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightOneHandAxe01_Normal_Battle_Attack02Nor.json",
+    "file_size": 2048,
+    "last_modified": 1768373547.020338,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightOneHandAxe01_Normal_Battle_Attack02Nor"
+    ],
+    "cached_time": 1774343501.228568,
+    "file_hash": "3da0232f13016adbf990b4f3074b2612",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightSarrisa01_Normal_Battle_NormalSkill01_02Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightSarrisa01_Normal_Battle_NormalSkill01_02Nor.json",
+    "file_size": 1706,
+    "last_modified": 1768373547.0547042,
+    "sheet_names": [
+      "value",
+      "rotation",
+      "WightSarrisa01_Normal_Battle_NormalSkill01_02Nor"
+    ],
+    "cached_time": 1774343501.232569,
+    "file_hash": "40cccf41c8e791ca8dd785ba088ab41e",
+    "plugin_id": ""
+  },
+  "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightSword01_Normal_Battle_Attack03Nor.json": {
+    "file_path": "F:\\Workspaces\\design_Jinsu_Trunk\\Trunk\\Shared\\Data\\JSON\\RootMotion\\WightSword01_Normal_Battle_Attack03Nor.json",
+    "file_size": 1841,
+    "last_modified": 1768373547.0918188,
+    "sheet_names": [
+      "value",
+      "WightSword01_Normal_Battle_Attack03Nor"
+    ],
+    "cached_time": 1774343501.241088,
+    "file_hash": "3f00802ad754688f8de2bfa46d5a3d09",
+    "plugin_id": ""
+  }
+}

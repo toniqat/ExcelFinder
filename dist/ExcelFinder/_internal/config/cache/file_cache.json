@@ -1,0 +1,1003 @@
+{
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\QuestCollection.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\QuestCollection.xls",
+    "file_size": 58880,
+    "last_modified": 1756948558.236058,
+    "sheet_names": [
+      "QuestCollection"
+    ],
+    "cached_time": 1758800123.316604,
+    "file_hash": "e3a00fa7f3e86b7b59d1a85bcd7f9107"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\WantedCollection.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\WantedCollection.xlsx",
+    "file_size": 15285,
+    "last_modified": 1756948558.2400584,
+    "sheet_names": [
+      "WantedCollection"
+    ],
+    "cached_time": 1758800123.323604,
+    "file_hash": "f39afe1d7f8f526363530b3177d26e6a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Event\\Event_CompeteScore.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Event\\Event_CompeteScore.xlsx",
+    "file_size": 27131,
+    "last_modified": 1758532755.6306763,
+    "sheet_names": [
+      "Event_CompeteScore",
+      "Define"
+    ],
+    "cached_time": 1758800123.394607,
+    "file_hash": "cc9585f0ff793529a2c2756c3bda696d"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\ExplorationGroup.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\ExplorationGroup.xls",
+    "file_size": 80896,
+    "last_modified": 1755648231.143975,
+    "sheet_names": [
+      "ExplorationGroup"
+    ],
+    "cached_time": 1758800123.418605,
+    "file_hash": "9c0ab152f4af28414d0b861f7a23ee97"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\FruitTree\\Fruit.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\FruitTree\\Fruit.xls",
+    "file_size": 79360,
+    "last_modified": 1717985916.7447314,
+    "sheet_names": [
+      "Fruit",
+      "Define",
+      "\ucc38\uc870"
+    ],
+    "cached_time": 1758800123.428605,
+    "file_hash": "47e1ca82e5f700f329f92ac0c7bbde40"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1014_LevelGadget_WhiteHarbor.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1014_LevelGadget_WhiteHarbor.xlsx",
+    "file_size": 74231,
+    "last_modified": 1752800224.3728008,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1758800123.450608,
+    "file_hash": "9a9b0e125f77796157134e0ff5dad544"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1032_GadgetSpawn_Felwood.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1032_GadgetSpawn_Felwood.xlsx",
+    "file_size": 89838,
+    "last_modified": 1756460950.3022625,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1758800123.545608,
+    "file_hash": "2fd270cbe81eeb485b3f20e40120d05b"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\2013_GadgetSpawn_Gathering.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\2013_GadgetSpawn_Gathering.xlsx",
+    "file_size": 28239,
+    "last_modified": 1746586528.5344875,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1758800123.671611,
+    "file_hash": "2277de49443569770046f405eb990b38"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\AnimationMarkerAnimTime.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\AnimationMarkerAnimTime.xls",
+    "file_size": 64000,
+    "last_modified": 1717985916.8397324,
+    "sheet_names": [
+      "AnimationMarkerAnimTime",
+      "Define"
+    ],
+    "cached_time": 1758800123.683609,
+    "file_hash": "35410ebbf04807d261ee784ab3fbaa8c"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\LevelGimmick\\LevelGimmick_Test_Sight.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\LevelGimmick\\LevelGimmick_Test_Sight.xlsx",
+    "file_size": 17653,
+    "last_modified": 1745396186.4006348,
+    "sheet_names": [
+      "LevelGimmick",
+      "Define"
+    ],
+    "cached_time": 1758800123.847612,
+    "file_hash": "0414265312bb271856e2e2577aa28522"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Master\\ClassMasterMission.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Master\\ClassMasterMission.xls",
+    "file_size": 40448,
+    "last_modified": 1720602259.4190464,
+    "sheet_names": [
+      "ClassMasterMission"
+    ],
+    "cached_time": 1758800123.851611,
+    "file_hash": "9dc8b5ea207382001d9079e9fdee8859"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Master\\MasterAbility.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Master\\MasterAbility.xls",
+    "file_size": 330752,
+    "last_modified": 1717985917.1563125,
+    "sheet_names": [
+      "MasterAbility"
+    ],
+    "cached_time": 1758800123.865614,
+    "file_hash": "92f031bc7e98ee1e5871729efa68bd72"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Npc\\NpcType.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Npc\\NpcType.xls",
+    "file_size": 40448,
+    "last_modified": 1717985917.3967524,
+    "sheet_names": [
+      "NpcType"
+    ],
+    "cached_time": 1758800123.950614,
+    "file_hash": "19f952a576cad5a32ffa0e785adfa41e"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Npc\\NpcVoice.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Npc\\NpcVoice.xls",
+    "file_size": 2551808,
+    "last_modified": 1758273727.652,
+    "sheet_names": [
+      "NpcVoice",
+      "SoundCue_file",
+      "Define"
+    ],
+    "cached_time": 1758800124.049614,
+    "file_hash": "8329fa349bcfd30b6ed4aac77a6394a4"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\AcquireInfoCategory.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\AcquireInfoCategory.xls",
+    "file_size": 51712,
+    "last_modified": 1750294529.2917988,
+    "sheet_names": [
+      "AcquireInfoCategory",
+      "Define"
+    ],
+    "cached_time": 1761558757.253697,
+    "file_hash": "e92652cc24d95a0e97ce6d4e2e7c0aca"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ActorBodyTypeAnimation.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ActorBodyTypeAnimation.xls",
+    "file_size": 154624,
+    "last_modified": 1717985916.3231738,
+    "sheet_names": [
+      "ActorBodyTypeAnimation",
+      "Define",
+      "\uccb4\ud615\ubd84\ub958\uae30\uc870"
+    ],
+    "cached_time": 1761558757.270214,
+    "file_hash": "5428199911ec150f1ca7f7533b3e9b6a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Asset.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Asset.xls",
+    "file_size": 196608,
+    "last_modified": 1761531760.071311,
+    "sheet_names": [
+      "AssetGroup",
+      "Asset",
+      "GuildAsset"
+    ],
+    "cached_time": 1761558757.301746,
+    "file_hash": "f41234b452b63fcffc933ee223623fe7"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BroadCasting.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BroadCasting.xls",
+    "file_size": 76800,
+    "last_modified": 1717985916.4400158,
+    "sheet_names": [
+      "BroadCasting",
+      "Define"
+    ],
+    "cached_time": 1761558757.317774,
+    "file_hash": "dadca09bea21c65067d7f93c8efffd2f"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CharacterStatLimit.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CharacterStatLimit.xls",
+    "file_size": 62976,
+    "last_modified": 1756202815.5119343,
+    "sheet_names": [
+      "CharacterStatLimit"
+    ],
+    "cached_time": 1761558757.414512,
+    "file_hash": "45b5d0f978613460be0395e2127193e0"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CheatBundle.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CheatBundle.xls",
+    "file_size": 375808,
+    "last_modified": 1760498551.6048172,
+    "sheet_names": [
+      "CheatBundle",
+      "Define"
+    ],
+    "cached_time": 1761558757.44156,
+    "file_hash": "611e10ccb57b2cc78ac2c2cf54e53b64"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Customization.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Customization.xls",
+    "file_size": 49152,
+    "last_modified": 1717985916.618018,
+    "sheet_names": [
+      "BoneCustomization",
+      "BoneCustomizationGroup"
+    ],
+    "cached_time": 1761558757.552261,
+    "file_hash": "9eed26bf63a7d504ba9c34a087150b98"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\DialogSubtitle.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\DialogSubtitle.xls",
+    "file_size": 166912,
+    "last_modified": 1717985916.6510181,
+    "sheet_names": [
+      "DialogSubtitle",
+      "Define"
+    ],
+    "cached_time": 1761558757.563769,
+    "file_hash": "6f54ca4478b35f753cc6d40c23e106f2"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dialog_FieldContents.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dialog_FieldContents.xls",
+    "file_size": 989696,
+    "last_modified": 1761303545.619914,
+    "sheet_names": [
+      "Dialog",
+      "DialogChoice",
+      "MiniDialog",
+      "DialogCondition",
+      "Define"
+    ],
+    "cached_time": 1761558757.594458,
+    "file_hash": "67231ba0ebe2fabca0ac302fc665c1e3"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\EnvironmentSpeechBalloon.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\EnvironmentSpeechBalloon.xls",
+    "file_size": 61440,
+    "last_modified": 1717985916.7040188,
+    "sheet_names": [
+      "EnvironmentSpeechBalloon",
+      "Define"
+    ],
+    "cached_time": 1761558757.631649,
+    "file_hash": "4d1d8a6bed607bd240fffd169b6ea763"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exp.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exp.xls",
+    "file_size": 86016,
+    "last_modified": 1749985731.4844582,
+    "sheet_names": [
+      "Exp",
+      "Sheet1"
+    ],
+    "cached_time": 1761558757.64667,
+    "file_hash": "a4abe8b0b81af9a8fc3a51d643507e70"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\FarVisible.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\FarVisible.xlsx",
+    "file_size": 23924,
+    "last_modified": 1761299059.0865102,
+    "sheet_names": [
+      "FarVisible",
+      "Define"
+    ],
+    "cached_time": 1761558758.081349,
+    "file_hash": "0414265312bb271856e2e2577aa28522"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BeyondTheWall\\BeyondTheWallUnknown.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BeyondTheWall\\BeyondTheWallUnknown.xls",
+    "file_size": 126464,
+    "last_modified": 1757572915.6908252,
+    "sheet_names": [
+      "BeyondTheWallUnknown",
+      "Define"
+    ],
+    "cached_time": 1761558758.100979,
+    "file_hash": "0140b90b2a5c9a9084b6c1a90283686a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampAccessory.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampAccessory.xls",
+    "file_size": 58880,
+    "last_modified": 1754473171.7068515,
+    "sheet_names": [
+      "CampAccessory",
+      "Define"
+    ],
+    "cached_time": 1761558758.109485,
+    "file_hash": "067a51d6642fec06c6fd1fa8071d6193"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampPub.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampPub.xls",
+    "file_size": 53248,
+    "last_modified": 1724029008.7960653,
+    "sheet_names": [
+      "CampPub",
+      "Define"
+    ],
+    "cached_time": 1761558758.126007,
+    "file_hash": "c6c963c727ed0f8655214ed8f28a8917"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\ExcavationTeamBalance.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\ExcavationTeamBalance.xlsx",
+    "file_size": 19034,
+    "last_modified": 1761009061.7011256,
+    "sheet_names": [
+      "ExcavationTeamBalance",
+      "Define"
+    ],
+    "cached_time": 1761558758.134007,
+    "file_hash": "c51dbf5823c59a72562f38239e2ffd19"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\Trading.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\Trading.xlsx",
+    "file_size": 30849,
+    "last_modified": 1761119131.3462224,
+    "sheet_names": [
+      "Trading",
+      "Define"
+    ],
+    "cached_time": 1761558758.149537,
+    "file_hash": "1f57eb35d4fad08a2b5ea367181c0b2a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\MessageCollection.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\MessageCollection.xls",
+    "file_size": 96256,
+    "last_modified": 1743770674.6979046,
+    "sheet_names": [
+      "MessageCollectionGroup",
+      "MessageCollection",
+      "Balance",
+      "Define"
+    ],
+    "cached_time": 1761558758.19259,
+    "file_hash": "81ba31ad13891c5a8481617b245addc3"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DungeonMVP.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DungeonMVP.xls",
+    "file_size": 62976,
+    "last_modified": 1717985916.6650183,
+    "sheet_names": [
+      "DungeonMVP",
+      "Define"
+    ],
+    "cached_time": 1761558758.205603,
+    "file_hash": "2ae921a67897b34182cb5ae448614362"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DungeonSeasonEffect.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DungeonSeasonEffect.xlsx",
+    "file_size": 248656,
+    "last_modified": 1758252709.704624,
+    "sheet_names": [
+      "DungeonSeasonEffect",
+      "Sheet1"
+    ],
+    "cached_time": 1761558758.332872,
+    "file_hash": "1f57eb35d4fad08a2b5ea367181c0b2a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\2014_LevelGadget_SupplyBox.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\2014_LevelGadget_SupplyBox.xlsx",
+    "file_size": 28291,
+    "last_modified": 1746586528.5374875,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1761558758.692414,
+    "file_hash": "2277de49443569770046f405eb990b38"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\GadgetControlAction.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\GadgetControlAction.xls",
+    "file_size": 570368,
+    "last_modified": 1761542173.4785097,
+    "sheet_names": [
+      "GadgetControlAction",
+      "Define",
+      "\uc0c1\ud638 \uc791\uc6a9 \ud0c0\uc785 \uc815\ub9ac",
+      "Sheet2",
+      "Sheet1"
+    ],
+    "cached_time": 1761558758.725965,
+    "file_hash": "725513ff0a00da48e60ba0da2e2cc78f"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Item\\EquipmentReforge.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Item\\EquipmentReforge.xls",
+    "file_size": 84992,
+    "last_modified": 1760510999.549505,
+    "sheet_names": [
+      "EquipmentReforge",
+      "Desc"
+    ],
+    "cached_time": 1761558758.809573,
+    "file_hash": "2b3b2b98e1971a12050019c890b8be45"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Item\\Item.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Item\\Item.xlsx",
+    "file_size": 1013913,
+    "last_modified": 1761556445.8050442,
+    "sheet_names": [
+      "Item",
+      "Temp",
+      "Type&\ub300\uc5ed\ud3ed"
+    ],
+    "cached_time": 1761558758.977499,
+    "file_hash": "cb7c4e08677bcf7f8341eaf560037a54"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_1032_MostNorthern_Sub.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_1032_MostNorthern_Sub.xlsx",
+    "file_size": 215914,
+    "last_modified": 1761544833.0686548,
+    "sheet_names": [
+      "Quest",
+      "QuestTask",
+      "QuestTaskPos",
+      "QuestTaskAction",
+      "QuestTaskFallowNpc",
+      "Define"
+    ],
+    "cached_time": 1761558760.289009,
+    "file_hash": "077e72004dc9a2d2b2b08800b54f5807"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_2331_HighGarden.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_2331_HighGarden.xlsx",
+    "file_size": 147387,
+    "last_modified": 1756101870.586139,
+    "sheet_names": [
+      "Quest",
+      "QuestTask",
+      "QuestTaskPos",
+      "QuestTaskAction",
+      "QuestTaskFallowNpc",
+      "Define"
+    ],
+    "cached_time": 1761558761.030699,
+    "file_hash": "fc7e4dc1c98c8970c290d23c006de8db"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_4331_KingsLanding.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Quest\\Quest_4331_KingsLanding.xlsx",
+    "file_size": 149666,
+    "last_modified": 1761017470.8695593,
+    "sheet_names": [
+      "Quest",
+      "QuestTask",
+      "QuestTaskPos",
+      "QuestTaskAction",
+      "QuestTaskFallowNpc",
+      "Define"
+    ],
+    "cached_time": 1761558761.243273,
+    "file_hash": "077e72004dc9a2d2b2b08800b54f5807"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_BMShop.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_BMShop.xlsx",
+    "file_size": 284168,
+    "last_modified": 1761009062.2414937,
+    "sheet_names": [
+      "BMShop",
+      "Define"
+    ],
+    "cached_time": 1761558761.445289,
+    "file_hash": "820f31caeb804dd7e0ac73e84ae5e07e"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_Service.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_Service.xls",
+    "file_size": 78336,
+    "last_modified": 1759192106.4168203,
+    "sheet_names": [
+      "Service"
+    ],
+    "cached_time": 1761558761.610901,
+    "file_hash": "4492d6c8300531836b9266dfdbea28aa"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_Wanted.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\Reward_Wanted.xls",
+    "file_size": 65024,
+    "last_modified": 1759192106.4348211,
+    "sheet_names": [
+      "Wanted"
+    ],
+    "cached_time": 1761558761.618412,
+    "file_hash": "906b89998520c4b6d8931420b8966334"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\SpecialReward.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Reward\\SpecialReward.xls",
+    "file_size": 54272,
+    "last_modified": 1756262565.8124006,
+    "sheet_names": [
+      "SpecialReward",
+      "\uc124\uba85"
+    ],
+    "cached_time": 1761558761.627917,
+    "file_hash": "7ac0d8f4c681a33d43cb446e20de367e"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Season\\SeasonCoopMissionStepReward.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Season\\SeasonCoopMissionStepReward.xlsx",
+    "file_size": 9742,
+    "last_modified": 1758610142.1378634,
+    "sheet_names": [
+      "SeasonCoopMissionStepReward"
+    ],
+    "cached_time": 1761558761.636045,
+    "file_hash": "bc782888d851b0f5bb535a0b7086e9f0"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\SeasonPass\\PassLevel.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\SeasonPass\\PassLevel.xlsx",
+    "file_size": 39650,
+    "last_modified": 1760580396.6931067,
+    "sheet_names": [
+      "PassLevel"
+    ],
+    "cached_time": 1761558761.66258,
+    "file_hash": "152e35d42ea262c9b864ea2374100f52"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Shop\\ShopPedlar.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Shop\\ShopPedlar.xls",
+    "file_size": 92160,
+    "last_modified": 1757898486.894984,
+    "sheet_names": [
+      "ShopPedlar",
+      "ShopPedlarGroup"
+    ],
+    "cached_time": 1761558761.701568,
+    "file_hash": "67c23dbaa8cd303d17433a0496d1eb20"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\EffectOperation.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\EffectOperation.xls",
+    "file_size": 1369600,
+    "last_modified": 1761544833.1177955,
+    "sheet_names": [
+      "EffectOperation",
+      "Define",
+      "\uc774\uc804 \ud30c\uc77c",
+      "NK\ub370\uc774\ud130\ubc31\uc5c5"
+    ],
+    "cached_time": 1761558761.767621,
+    "file_hash": "26965855978f6e4d0fc06f7e0048c153"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SkillTrain.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SkillTrain.xls",
+    "file_size": 104448,
+    "last_modified": 1746772299.0113313,
+    "sheet_names": [
+      "SkillTrain"
+    ],
+    "cached_time": 1761558761.904681,
+    "file_hash": "bdfd51c8af1965b56e26b071deb3b13e"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SkillTrait.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SkillTrait.xls",
+    "file_size": 211456,
+    "last_modified": 1761009062.3724966,
+    "sheet_names": [
+      "SkillTrait"
+    ],
+    "cached_time": 1761558761.924191,
+    "file_hash": "1a39870695d3214f2b7417feebf91d3c"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SpecialSkillAcquire.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\SpecialSkillAcquire.xls",
+    "file_size": 42496,
+    "last_modified": 1732003266.168289,
+    "sheet_names": [
+      "SpecialSkillAcquire",
+      "Define"
+    ],
+    "cached_time": 1761558761.938713,
+    "file_hash": "49bcc785fdfed3e31ba89458dc6c8d20"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\WeaponSkill.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Skill\\WeaponSkill.xls",
+    "file_size": 67072,
+    "last_modified": 1755827993.2357478,
+    "sheet_names": [
+      "WeaponSkill"
+    ],
+    "cached_time": 1761558761.947726,
+    "file_hash": "bdee9abdc6435831876de942be24f398"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\SpecialMoveActor\\SpecialMoveActor.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\SpecialMoveActor\\SpecialMoveActor.xlsx",
+    "file_size": 29522,
+    "last_modified": 1748434158.0828013,
+    "sheet_names": [
+      "SpecialMoveActor"
+    ],
+    "cached_time": 1761558761.972761,
+    "file_hash": "492f31722426bc00587fd9ebb5ef8e16"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Toy\\ToyGrade.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Toy\\ToyGrade.xls",
+    "file_size": 36352,
+    "last_modified": 1717985918.1507864,
+    "sheet_names": [
+      "ToyGrade"
+    ],
+    "cached_time": 1761558761.994775,
+    "file_hash": "2f2af5874bf5b81a527532a6f74c945b"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\TraitTree\\TraitTreeAbility.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\TraitTree\\TraitTreeAbility.xls",
+    "file_size": 659456,
+    "last_modified": 1761009062.3804972,
+    "sheet_names": [
+      "TraitTreeAbility",
+      "Sheet1"
+    ],
+    "cached_time": 1761558762.031879,
+    "file_hash": "a0e7bdcff35539257c85b699f2712772"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldEvent\\WorldEventGroup.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldEvent\\WorldEventGroup.xls",
+    "file_size": 51712,
+    "last_modified": 1761296484.4940164,
+    "sheet_names": [
+      "WorldEventGroup"
+    ],
+    "cached_time": 1761558762.106647,
+    "file_hash": "2f620cf0a2d56ca11aa346f3713ff8f1"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldLevel\\WorldLevelScalingExploration.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldLevel\\WorldLevelScalingExploration.xlsx",
+    "file_size": 28158,
+    "last_modified": 1761009062.428498,
+    "sheet_names": [
+      "WorldLevelScalingExploration",
+      "Define"
+    ],
+    "cached_time": 1761558762.120154,
+    "file_hash": "924d7b7ab45e9360edb8f9073f729c2d"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldMap\\WorldMapDungeonEntrance.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\WorldMap\\WorldMapDungeonEntrance.xls",
+    "file_size": 51200,
+    "last_modified": 1749985731.934981,
+    "sheet_names": [
+      "DungeonEntrance",
+      "Define"
+    ],
+    "cached_time": 1761558762.150684,
+    "file_hash": "22d935d2f47a5c0e235944a9a629192b"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CharacterFunctionType.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CharacterFunctionType.xls",
+    "file_size": 57856,
+    "last_modified": 1741827866.022577,
+    "sheet_names": [
+      "CharacterFunctionType",
+      "Define"
+    ],
+    "cached_time": 1761558818.206926,
+    "file_hash": "4548553fa678b5f42d60731cad966f3d"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ChatType.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ChatType.xls",
+    "file_size": 57344,
+    "last_modified": 1758167253.9759974,
+    "sheet_names": [
+      "ChatType",
+      "Define"
+    ],
+    "cached_time": 1761558818.214435,
+    "file_hash": "849ff6a7828f378ab5720e97e90a89ca"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Class.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Class.xls",
+    "file_size": 57856,
+    "last_modified": 1760580396.5501034,
+    "sheet_names": [
+      "Class",
+      "ClassGender"
+    ],
+    "cached_time": 1761558818.221528,
+    "file_hash": "b6e0fe30ad4cbd4d2f320c9fe79265da"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClassSkillSlot.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClassSkillSlot.xls",
+    "file_size": 54272,
+    "last_modified": 1760580396.5541036,
+    "sheet_names": [
+      "ClassSkillSlot"
+    ],
+    "cached_time": 1761558818.230038,
+    "file_hash": "c8009fd77f7b1521fa92266c527afe95"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClassStatus.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClassStatus.xls",
+    "file_size": 50176,
+    "last_modified": 1747450381.0127158,
+    "sheet_names": [
+      "ClassStatus"
+    ],
+    "cached_time": 1761558818.236551,
+    "file_hash": "f30d6b96eea49c96496d026a75c96f0c"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClientCheatShortcut.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClientCheatShortcut.xls",
+    "file_size": 33792,
+    "last_modified": 1717985916.545017,
+    "sheet_names": [
+      "Cheat"
+    ],
+    "cached_time": 1761558818.242061,
+    "file_hash": "d71e52fc3ac1df3c1b9666b09243d979"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClientPush.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\ClientPush.xlsx",
+    "file_size": 21643,
+    "last_modified": 1745557852.4649534,
+    "sheet_names": [
+      "ClientPush",
+      "Define"
+    ],
+    "cached_time": 1761558818.784824,
+    "file_hash": "9c400720c34a9182dc20799aedf6d2de"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\\ubcf5\uc0ac\ubcf8 World.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\\ubcf5\uc0ac\ubcf8 World.xls",
+    "file_size": 177152,
+    "last_modified": 1757506626.564082,
+    "sheet_names": [
+      "World",
+      "Define",
+      "\uc608\uc804\ub370\uc774\ud130"
+    ],
+    "cached_time": 1761558818.798335,
+    "file_hash": "d4920c186854d838587561d5f51004ab"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Area\\AreaGimmick.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Area\\AreaGimmick.xls",
+    "file_size": 66048,
+    "last_modified": 1729747215.330861,
+    "sheet_names": [
+      "AreaGimmick",
+      "Define"
+    ],
+    "cached_time": 1761558818.810487,
+    "file_hash": "d5218a1eb88a92dd433cb31a832a22a3"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Balance\\\ud504\ub85c\uc81d\ud2b8T_\uc804\ud22c_\ubaac\uc2a4\ud130\ub370\uc774\ud130.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Balance\\\ud504\ub85c\uc81d\ud2b8T_\uc804\ud22c_\ubaac\uc2a4\ud130\ub370\uc774\ud130.xlsx",
+    "file_size": 4580145,
+    "last_modified": 1754614956.364769,
+    "sheet_names": [
+      "\ud504\ub864\ub85c\uadf8, \uc7a5\ubcbd\ub108\uba38 \uc6d0\uc815",
+      "Army",
+      "Basic",
+      "Battle",
+      "EPath"
+    ],
+    "cached_time": 1761558823.507343,
+    "file_hash": "9e9022c5b457f8eca68cd6e3734fd2de"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CostumeDye.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\CostumeDye.xls",
+    "file_size": 142848,
+    "last_modified": 1760580396.5721035,
+    "sheet_names": [
+      "CostumeDye",
+      "Define"
+    ],
+    "cached_time": 1761558903.571389,
+    "file_hash": "0d0bd75c33f689c9dc42234d5d0233d7"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\DisconnectTypeString.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\DisconnectTypeString.xlsx",
+    "file_size": 15938,
+    "last_modified": 1743030868.2558146,
+    "sheet_names": [
+      "DisconnectTypeString",
+      "Define"
+    ],
+    "cached_time": 1761558904.027377,
+    "file_hash": "9c400720c34a9182dc20799aedf6d2de"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Area\\AreaContent.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Area\\AreaContent.xls",
+    "file_size": 62976,
+    "last_modified": 1730769023.072671,
+    "sheet_names": [
+      "AreaContent"
+    ],
+    "cached_time": 1761558904.036049,
+    "file_hash": "fd2003c43495423f44a751488fdaa35e"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BeyondTheWall\\BeyondTheWall.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\BeyondTheWall\\BeyondTheWall.xlsx",
+    "file_size": 29591,
+    "last_modified": 1757915371.7782526,
+    "sheet_names": [
+      "BeyondTheWall",
+      "Define"
+    ],
+    "cached_time": 1761558904.068499,
+    "file_hash": "dcdfdc94e26a9209bd3a8967e3ff2f0c"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampUpGradeCost.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\CampUpGradeCost.xls",
+    "file_size": 56320,
+    "last_modified": 1741933478.1613958,
+    "sheet_names": [
+      "CampUpGradeCost"
+    ],
+    "cached_time": 1761558904.087676,
+    "file_hash": "6daf6fda234bc8f6523483cb8a0b6200"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\ExcavationTeamLevel.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\ExcavationTeamLevel.xlsx",
+    "file_size": 21111,
+    "last_modified": 1747380355.4939814,
+    "sheet_names": [
+      "ExcavationTeamLevel",
+      "Define"
+    ],
+    "cached_time": 1761558904.09792,
+    "file_hash": "c51dbf5823c59a72562f38239e2ffd19"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\WorkerEquipment.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\WorkerEquipment.xls",
+    "file_size": 198144,
+    "last_modified": 1741338826.589194,
+    "sheet_names": [
+      "WorkerEquipment",
+      "Define"
+    ],
+    "cached_time": 1761558904.107441,
+    "file_hash": "25dc0a000c90698da02605f6d42916e4"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\WorkerEquipmentAbilityGroup.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Camp\\WorkerEquipmentAbilityGroup.xls",
+    "file_size": 65024,
+    "last_modified": 1732330322.0265236,
+    "sheet_names": [
+      "WorkerEquipmentAbilityGroup",
+      "Define"
+    ],
+    "cached_time": 1761558904.113597,
+    "file_hash": "c33369104e80562a9ca9bf3b52ad2b8c"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\CabinCollection.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\CabinCollection.xls",
+    "file_size": 53248,
+    "last_modified": 1749985731.3860066,
+    "sheet_names": [
+      "CabinCollection"
+    ],
+    "cached_time": 1761558904.123117,
+    "file_hash": "cf9db51998ed11edfe8cc3db843bb344"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\CharacterCollection.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\CharacterCollection.xls",
+    "file_size": 144896,
+    "last_modified": 1761009061.721126,
+    "sheet_names": [
+      "CharacterCollection",
+      "Define"
+    ],
+    "cached_time": 1761558904.127115,
+    "file_hash": "1d6b680031eac555fffeb006350235ea"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\LegendAnimalCollection.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Collection\\LegendAnimalCollection.xls",
+    "file_size": 50176,
+    "last_modified": 1757558673.7777584,
+    "sheet_names": [
+      "LegendAnimalCollection"
+    ],
+    "cached_time": 1761558904.146374,
+    "file_hash": "b99e36f2e4b3ca555a02e271c1494a52"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DescendedDungeon.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Dungeon\\DescendedDungeon.xls",
+    "file_size": 151040,
+    "last_modified": 1717985916.6540182,
+    "sheet_names": [
+      "Basic",
+      "MeshPos",
+      "Dialog",
+      "Interaction",
+      "Quest",
+      "Difficulty",
+      "CountBalanceNPC",
+      "Reward",
+      "Define"
+    ],
+    "cached_time": 1761558904.159399,
+    "file_hash": "5ae1094e4a97b6c3fa347ffc5e49f32b"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Encounter\\Encounter.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Encounter\\Encounter.xls",
+    "file_size": 39424,
+    "last_modified": 1717985916.6880188,
+    "sheet_names": [
+      "Encounter"
+    ],
+    "cached_time": 1761558904.171302,
+    "file_hash": "44354e0800a3e260af89f46f537772ab"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Encounter\\SingleEncounter.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Encounter\\SingleEncounter.xlsx",
+    "file_size": 23517,
+    "last_modified": 1755501678.6832974,
+    "sheet_names": [
+      "SingleEncounter"
+    ],
+    "cached_time": 1761558904.185628,
+    "file_hash": "f39afe1d7f8f526363530b3177d26e6a"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Event\\Event_HotTime.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Event\\Event_HotTime.xlsx",
+    "file_size": 21242,
+    "last_modified": 1757639507.7636318,
+    "sheet_names": [
+      "Event_HotTime",
+      "Define"
+    ],
+    "cached_time": 1761558904.211336,
+    "file_hash": "c51dbf5823c59a72562f38239e2ffd19"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\EnemyHideout.xls": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\EnemyHideout.xls",
+    "file_size": 96256,
+    "last_modified": 1761546833.424738,
+    "sheet_names": [
+      "EnemyHideout",
+      "(X)"
+    ],
+    "cached_time": 1761558904.223092,
+    "file_hash": "d7357b9bc9b20c9d69696357fa7afde1"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\ExplorationBonusGroup.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Exploration\\ExplorationBonusGroup.xlsx",
+    "file_size": 14377,
+    "last_modified": 1760663245.3752105,
+    "sheet_names": [
+      "ExplorationBonusGroup"
+    ],
+    "cached_time": 1761558904.243297,
+    "file_hash": "492f31722426bc00587fd9ebb5ef8e16"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1015_GadgetSpawn_KingsLanding.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1015_GadgetSpawn_KingsLanding.xlsx",
+    "file_size": 27771,
+    "last_modified": 1744882559.778157,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1761558904.283563,
+    "file_hash": "2fd270cbe81eeb485b3f20e40120d05b"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1021_GadgetSpawn_Oldtown.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1021_GadgetSpawn_Oldtown.xlsx",
+    "file_size": 124056,
+    "last_modified": 1757490536.3522408,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1761558904.334106,
+    "file_hash": "9a9b0e125f77796157134e0ff5dad544"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1040_LevelGadget_MostNorthern.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1040_LevelGadget_MostNorthern.xlsx",
+    "file_size": 28228,
+    "last_modified": 1761017470.5365307,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1761558904.478966,
+    "file_hash": "2277de49443569770046f405eb990b38"
+  },
+  "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1091_LevelGadget_BeyondTheWall.xlsx": {
+    "file_path": "C:\\Users\\jinsu_kim\\Documents\\Perforce_Trunk\\Trunk\\Shared\\Data\\XLS\\Gadget\\1091_LevelGadget_BeyondTheWall.xlsx",
+    "file_size": 64864,
+    "last_modified": 1758012055.3732638,
+    "sheet_names": [
+      "GadgetSpawn",
+      "Define"
+    ],
+    "cached_time": 1761558904.54261,
+    "file_hash": "2fd0190ecb715777711ea18e834d08bb"
+  }
+}

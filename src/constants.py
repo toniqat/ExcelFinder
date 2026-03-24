@@ -1,0 +1,43 @@
+# 애플리케이션 상수 정의
+
+# UI 관련 상수
+DEFAULT_WINDOW_WIDTH = 1200
+DEFAULT_WINDOW_HEIGHT = 700
+DEFAULT_SHEET_VIEWER_WIDTH = 900
+DEFAULT_SHEET_VIEWER_HEIGHT = 300
+
+# 검색 관련 상수
+DEFAULT_WORKER_COUNT = 4
+MIN_WORKER_COUNT = 1
+SEARCH_PROGRESS_UPDATE_INTERVAL = 100  # ms
+
+# 파일 처리 상수
+SUPPORTED_EXCEL_EXTENSIONS = ('.xlsx', '.xls', '.xlsm')
+SUPPORTED_CSV_EXTENSIONS = ('.csv', '.tsv')
+SUPPORTED_EXTENSIONS = SUPPORTED_EXCEL_EXTENSIONS + SUPPORTED_CSV_EXTENSIONS  # 하위 호환 유지
+
+# 플러그인 시스템 상수
+PLUGINS_DIR_NAME = "plugins"
+PLUGIN_FILE_PREFIX = "plugin_"
+
+# 인코딩 시도 순서 (한국어 환경 우선)
+CSV_ENCODINGS = ['utf-8', 'cp949', 'euc-kr', 'utf-8-sig', 'latin1']
+CSV_SEPARATORS = [',', ';', '\t', '|']
+
+# 메모리 최적화 상수
+LARGE_FILE_THRESHOLD = 50 * 1024 * 1024  # 50MB
+CHUNK_SIZE = 1000  # 스트리밍 처리 시 청크 크기
+MAX_CACHE_SIZE = 100  # 캐시할 최대 파일 수
+
+# UI 반응성 상수
+UI_UPDATE_INTERVAL = 50  # ms
+LOADING_DIALOG_MIN_TIME = 100  # ms
+
+# 로그 관련 상수
+MAX_LOG_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+LOG_BACKUP_COUNT = 5
+
+# 파일 열기 관련 상수
+FILE_OPEN_TIMEOUT = 1500  # ms
+EXCEL_PROCESS_CHECK_INTERVAL = 500  # ms
+EXCEL_PROCESS_MAX_CHECKS = 10
