@@ -1,23 +1,209 @@
 import os
 import sys
 import json
-import pandas as pd
+from datetime import datetime
 from PyQt5.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                             QPushButton, QLabel, QLineEdit, QFileDialog, QListWidget,
                             QRadioButton, QGroupBox, QHeaderView, QMessageBox, QProgressBar,
                             QTextEdit, QSpinBox, QToolBar, QAction, QCheckBox, QStatusBar,
                             QComboBox, QSplitter, QTreeWidget, QTreeWidgetItem, QMenu,
                             QStyledItemDelegate, QApplication, QStyle, QWidgetAction)
-from PyQt5.QtCore import Qt, QEvent, pyqtSignal, QSize, QProcess
+from PyQt5.QtCore import Qt, QEvent, pyqtSignal, QSize, QProcess, QTimer
 from PyQt5.QtGui import QIcon, QTextDocument, QBrush, QColor, QTextCharFormat, QPainter
-import multiprocessing as mp
-import subprocess
 import stat
 
 from search_worker import ParallelSearchWorker
 from sheet_viewer import SheetViewer
 from search_exception_dialog_improved import SearchExceptionDialogImproved
 from plugin_registry import get_plugin_registry
+from result_model import ResultTreeModel
+
+class StickyHeaderOverlay(QWidget):
+    """QTreeView 상단에 고정되는 Sticky Header 오버레이 (VS Code Sticky Scroll 스타일).
+    스크롤 시 현재 보이는 항목의 상위(파일/시트) 노드가 상단에 떠 있도록 한다."""
+
+    ROW_HEIGHT = 22
+    BG_COLOR = QColor(245, 245, 245)
+    BORDER_COLOR = QColor(200, 200, 200)
+
+    def __init__(self, tree_view, parent=None):
+        super().__init__(parent or tree_view)
+        self._tree = tree_view
+        self._rows = []  # list of (text, ntype, index)
+        self._icon_resolver = None  # callable(file_ext) -> QIcon
+        self.setAttribute(Qt.WA_TransparentForMouseEvents, False)
+        self.setMouseTracking(True)
+        self.setCursor(Qt.ArrowCursor)
+        self.hide()
+
+        # 스크롤바 변경 시 업데이트
+        vbar = tree_view.verticalScrollBar()
+        if vbar:
+            vbar.valueChanged.connect(self._on_scroll)
+
+        # 모델 변경 시에도 업데이트
+        tree_view.expanded.connect(self._on_scroll)
+        tree_view.collapsed.connect(self._on_scroll)
+
+        # 뷰포트 리사이즈 감지
+        tree_view.viewport().installEventFilter(self)
+
+    def set_icon_resolver(self, resolver):
+        """파일 확장자로 아이콘을 반환하는 콜백 설정: resolver(file_ext) -> QIcon"""
+        self._icon_resolver = resolver
+
+    def _on_scroll(self, *_args):
+        """스크롤 위치에 따라 sticky header 갱신"""
+        tree = self._tree
+        model = tree.model()
+        if model is None or model.rowCount() == 0:
+            self._rows = []
+            self.hide()
+            return
+
+        # 뷰포트 상단에 있는 아이템 찾기
+        header_height = tree.header().height() if not tree.isHeaderHidden() else 0
+        top_index = tree.indexAt(tree.viewport().rect().topLeft())
+        if not top_index.isValid():
+            self._rows = []
+            self.hide()
+            return
+
+        # 조상 체인 수집 (루트 제외)
+        ancestors = []
+        parent = top_index.parent()
+        while parent.isValid():
+            node_data = parent.data(Qt.UserRole)
+            if isinstance(node_data, dict):
+                text = node_data.get('col_0', '')
+                ntype = node_data.get('type', '')
+                ancestors.append((text, ntype, parent))
+            parent = parent.parent()
+        ancestors.reverse()  # 파일 → 시트 순서
+
+        # 최상위 아이템이면 sticky header 불필요
+        if not ancestors:
+            self._rows = []
+            self.hide()
+            return
+
+        self._rows = ancestors
+
+        # 오버레이 크기 및 위치 조정
+        row_count = len(ancestors)
+        total_height = row_count * self.ROW_HEIGHT
+        viewport = tree.viewport()
+        # 오버레이를 viewport 좌표계가 아닌 tree widget 좌표계에 배치
+        viewport_pos = viewport.mapTo(tree, viewport.rect().topLeft())
+        self.setGeometry(
+            viewport_pos.x(), viewport_pos.y(),
+            viewport.width(), total_height
+        )
+        self.show()
+        self.raise_()
+        self.update()
+
+    def paintEvent(self, event):
+        if not self._rows:
+            return
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing, False)
+
+        tree = self._tree
+        total_height = len(self._rows) * self.ROW_HEIGHT
+
+        # 배경
+        painter.fillRect(0, 0, self.width(), total_height, self.BG_COLOR)
+
+        # 각 행 그리기
+        font = tree.font()
+        painter.setFont(font)
+        fm = painter.fontMetrics()
+
+        for i, (text, ntype, index) in enumerate(self._rows):
+            y = i * self.ROW_HEIGHT
+
+            # 들여쓰기: 파일=0, 시트=1
+            indent = tree.indentation() * (1 if ntype == 'file' else 2)
+
+            # expand/collapse 아이콘 영역
+            icon_space = tree.indentation()
+
+            # 텍스트 그리기 (HTML 제거 - plain text)
+            plain = text
+            if '<span' in str(text):
+                doc = QTextDocument()
+                doc.setHtml(str(text))
+                plain = doc.toPlainText()
+
+            # 파일 아이콘 영역 (파일 노드일 때만)
+            file_icon_size = 0
+            if ntype == 'file' and self._icon_resolver:
+                node_data = index.data(Qt.UserRole)
+                if isinstance(node_data, dict):
+                    file_ext = node_data.get('file_ext', '')
+                    if file_ext:
+                        icon = self._icon_resolver(file_ext)
+                        if icon and not icon.isNull():
+                            file_icon_size = 18
+                            icon_y = y + (self.ROW_HEIGHT - 16) // 2
+                            icon_x = indent + icon_space
+                            icon.paint(painter, icon_x, icon_y, 16, 16)
+
+            text_x = indent + icon_space + file_icon_size + (2 if file_icon_size else 0)
+            text_rect = self.rect().__class__(
+                text_x, y, self.width() - text_x - 4, self.ROW_HEIGHT
+            )
+
+            # expand/collapse 화살표 아이콘
+            arrow_rect = self.rect().__class__(indent, y, icon_space, self.ROW_HEIGHT)
+            painter.setPen(QColor(100, 100, 100))
+            is_expanded = tree.isExpanded(index)
+            painter.drawText(arrow_rect, Qt.AlignCenter, '▼' if is_expanded else '▶')
+
+            painter.setPen(QColor(30, 30, 30))
+            elided = fm.elidedText(plain, Qt.ElideRight, text_rect.width())
+            painter.drawText(text_rect, Qt.AlignVCenter | Qt.AlignLeft, elided)
+
+        # 하단 경계선
+        painter.setPen(self.BORDER_COLOR)
+        painter.drawLine(0, total_height - 1, self.width(), total_height - 1)
+        painter.end()
+
+    def eventFilter(self, obj, event):
+        if obj is self._tree.viewport() and event.type() == QEvent.Resize:
+            self._on_scroll()
+        return False
+
+    def mousePressEvent(self, event):
+        """Sticky header 클릭: 화살표 영역 클릭 시 접기/펼치기, 나머지 영역 클릭 시 스크롤"""
+        if not self._rows:
+            return
+        row_idx = int(event.y() / self.ROW_HEIGHT)
+        if 0 <= row_idx < len(self._rows):
+            _, ntype, index = self._rows[row_idx]
+            tree = self._tree
+            indent = tree.indentation() * (1 if ntype == 'file' else 2)
+            icon_space = tree.indentation()
+            arrow_left = indent
+            arrow_right = indent + icon_space
+
+            if arrow_left <= event.x() < arrow_right:
+                # 화살표 영역 클릭 → 접기/펼치기 토글
+                if tree.isExpanded(index):
+                    tree.collapse(index)
+                    # 시트 노드를 접으면 상위 파일 노드가 맨 위에 오도록 스크롤
+                    if ntype == 'sheet' and index.parent().isValid():
+                        tree.scrollTo(index.parent(), tree.PositionAtTop)
+                    else:
+                        tree.scrollTo(index, tree.PositionAtTop)
+                else:
+                    tree.expand(index)
+            else:
+                # 텍스트 영역 클릭 → 해당 노드로 스크롤
+                tree.scrollTo(index)
+                tree.setCurrentIndex(index)
+
 
 class ResultTreeDelegate(QStyledItemDelegate):
     """결과 트리 전용 델리게이트: 'Name' 컬럼 HTML 렌더링 + 파일 그룹 구분선"""
@@ -185,7 +371,7 @@ class ExcelSearchApp(QMainWindow):
         self.actual_root_path = ""  # 실제 루트 폴더 경로 (간소화된 표시와 별도로 저장)
         
         # 설정 파일 경로 (config 폴더로 이동)
-        self.settings_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "excel_finder_settings.txt")
+        self.settings_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "docs_finder_settings.txt")
 
         # 필터 설정 JSON 파일 경로
         self.filter_settings_file = self._get_filter_config_path()
@@ -205,9 +391,11 @@ class ExcelSearchApp(QMainWindow):
             self.loading_dialog.update_progress(85, "설정 파일 로딩 중...")
         self.load_settings()
         
-        # 3단계: 경고 메시지 설정 (config.py에서 이미 처리됨)
+        # 3단계: 경고 메시지 설정 + pandas 지연 로드
         if self.loading_dialog:
             self.loading_dialog.update_progress(88, "경고 처리 설정 중...", "pandas 및 라이브러리 설정")
+        from config import configure_pandas
+        configure_pandas()
         
         # 4단계: 이벤트 핸들러 연결
         if self.loading_dialog:
@@ -244,6 +432,8 @@ class ExcelSearchApp(QMainWindow):
     def on_close_event(self, event):
         """애플리케이션 종료 시 설정 저장"""
         self.save_settings()
+        from search_worker import shutdown_shared_executor
+        shutdown_shared_executor()
         event.accept()
     
     def load_settings(self):
@@ -251,7 +441,7 @@ class ExcelSearchApp(QMainWindow):
         # 기본값 설정
         self.last_directory = ""
         self.search_mode_exact = True
-        self.worker_count_value = min(4, mp.cpu_count())
+        self.worker_count_value = min(4, os.cpu_count())
         self.saved_files = []
         self.excluded_headers = []
         self.excluded_if_not_empty = []
@@ -287,7 +477,7 @@ class ExcelSearchApp(QMainWindow):
                     if 'worker_count' in settings:
                         try:
                             count = int(settings['worker_count'])
-                            if 1 <= count <= mp.cpu_count():
+                            if 1 <= count <= os.cpu_count():
                                 self.worker_count_value = count
                                 self.worker_count.setValue(count)
                         except ValueError:
@@ -395,7 +585,7 @@ class ExcelSearchApp(QMainWindow):
                 # 컬럼 넓이 저장
                 column_widths = []
                 for i in range(5):  # 5개 컬럼
-                    column_widths.append(str(self.result_tree.columnWidth(i)))
+                    column_widths.append(str(self.result_tree.header().sectionSize(i)))
                 f.write(f"column_widths={','.join(column_widths)}\n")
 
             # JSON 형식으로 필터 설정 저장
@@ -451,7 +641,7 @@ class ExcelSearchApp(QMainWindow):
 
     def init_ui(self):
         # 메인 윈도우 설정
-        self.setWindowTitle('ExcelFinder v3.1')
+        self.setWindowTitle('DocsFinder v3.1')
         self.setGeometry(100, 100, 1200, 700)
         
         # 윈도우 아이콘 설정 (icon 폴더는 루트에 있음)
@@ -645,12 +835,12 @@ class ExcelSearchApp(QMainWindow):
 
         self.worker_count = QSpinBox()
         self.worker_count.setMinimum(1)
-        self.worker_count.setMaximum(mp.cpu_count())
-        self.worker_count.setValue(min(4, mp.cpu_count()))  # 기본값: 최대 4개, CPU 코어 수를 넘지 않음
-        self.worker_count.setToolTip(f'사용 가능한 CPU 코어: {mp.cpu_count()}개')
+        self.worker_count.setMaximum(os.cpu_count())
+        self.worker_count.setValue(min(4, os.cpu_count()))  # 기본값: 최대 4개, CPU 코어 수를 넘지 않음
+        self.worker_count.setToolTip(f'사용 가능한 CPU 코어: {os.cpu_count()}개')
 
         # 최대 CPU 수 표시 레이블
-        max_cpu_label = QLabel(f"(최대: {mp.cpu_count()})")
+        max_cpu_label = QLabel(f"(최대: {os.cpu_count()})")
 
         worker_layout.addWidget(self.worker_count)
         worker_layout.addWidget(max_cpu_label)
@@ -787,9 +977,15 @@ class ExcelSearchApp(QMainWindow):
         results_group = QGroupBox('검색 결과')
         results_layout = QVBoxLayout(results_group)
         
-        self.result_tree = QTreeWidget()
-        self.result_tree.setColumnCount(3)
-        self.result_tree.setHeaderLabels(['이름', '번호', '타입'])
+        from PyQt5.QtWidgets import QTreeView, QAbstractItemView
+        self.result_model = ResultTreeModel(self)
+        if not hasattr(self, 'folder_icon'):
+            self.init_icons()
+        self.result_model.set_icon_resolver(self._get_file_icon)
+        self.result_tree = QTreeView()
+        self.result_tree.setModel(self.result_model)
+        self.result_tree.setHeaderHidden(False)
+        self.result_tree.setRootIsDecorated(True)
 
         # 전체 트리에 델리게이트 적용 (HTML 렌더링 + 파일 그룹 구분선)
         result_tree_delegate = ResultTreeDelegate(self.result_tree)
@@ -804,12 +1000,17 @@ class ExcelSearchApp(QMainWindow):
         self.result_tree.setWordWrap(False)           # Disable word wrap at the view level
         self.result_tree.setTextElideMode(Qt.ElideRight)  # Elide non-HTML columns at right
 
-        self.result_tree.setSelectionBehavior(QTreeWidget.SelectRows)
-        self.result_tree.setEditTriggers(QTreeWidget.NoEditTriggers)
+        self.result_tree.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.result_tree.setEditTriggers(QAbstractItemView.NoEditTriggers)
+        self.result_tree.setAnimated(False)  # 애니메이션 비활성화 (성능)
         self.result_tree.setContextMenuPolicy(Qt.CustomContextMenu)
         self.result_tree.customContextMenuRequested.connect(self.show_results_context_menu)
-        self.result_tree.itemDoubleClicked.connect(self.show_sheet_data)
+        self.result_tree.doubleClicked.connect(self.show_sheet_data)
         results_layout.addWidget(self.result_tree)
+
+        # Sticky Header 오버레이
+        self._sticky_overlay = StickyHeaderOverlay(self.result_tree, self.result_tree)
+        self._sticky_overlay.set_icon_resolver(self._get_file_icon)
 
         # 기본 컬럼 넓이는 설정 로드 후에 처리됨 (load_settings에서 처리)
         
@@ -1404,6 +1605,11 @@ class ExcelSearchApp(QMainWindow):
         """검색 시작"""
         search_text = self.search_input.text()
         self.current_search_text = search_text  # 현재 검색어 저장
+        # 하이라이트 패턴 사전 컴파일
+        import re
+        self._highlight_pattern = re.compile(
+            f'({re.escape(search_text)})', flags=re.IGNORECASE
+        )
         if not search_text:
             QMessageBox.warning(self, '경고', '검색할 키워드를 입력해주세요.')
             self.search_input.setFocus()  # 입력 커서를 검색 입력 필드로 이동
@@ -1426,8 +1632,9 @@ class ExcelSearchApp(QMainWindow):
         self.dir_tree.setEnabled(False)
         
         # 결과 트리 초기화
-        self.result_tree.clear()
-        
+        self.result_model.clear()
+        self._sticky_overlay.hide()
+
         # 상태 바에 진행 상황 표시
         self.status_progress_bar.setValue(0)
         self.status_progress_bar.setVisible(True)
@@ -1513,15 +1720,23 @@ class ExcelSearchApp(QMainWindow):
             excluded_files,
             excluded_sheets
         )
-        self.search_worker.result_found.connect(self.add_result)
+        # 결과 배치 버퍼 초기화
+        self._result_buffer = []
+        self._result_batch_size = 100
+        self._batch_timer = QTimer()
+        self._batch_timer.setInterval(50)  # 50ms마다 배치 flush
+        self._batch_timer.timeout.connect(self._flush_result_buffer)
+        self._batch_timer.start()
+
+        self.search_worker.result_found.connect(self._buffer_result)
         self.search_worker.progress_update.connect(self.update_progress)
         self.search_worker.error_occurred.connect(self.log_error)
         self.search_worker.search_completed.connect(self.search_finished)
-        
+
         # 현재 처리 중인 파일 정보 연결 (search_worker.py에 구현 필요)
         if hasattr(self.search_worker, 'current_file_changed'):
             self.search_worker.current_file_changed.connect(self.update_current_file)
-        
+
         self.search_worker.start()
     
     def collect_excel_files(self, directory):
@@ -1617,7 +1832,7 @@ class ExcelSearchApp(QMainWindow):
             
             with open(log_file, "a", encoding="utf-8") as f:
                 f.write(f"\n{'='*50}\n")
-                f.write(f"시간: {pd.Timestamp.now()}\n")
+                f.write(f"시간: {datetime.now()}\n")
                 f.write(f"파일: {file_path}\n")
                 f.write(error_msg)
                 f.write(f"\n{'='*50}\n")
@@ -1625,8 +1840,49 @@ class ExcelSearchApp(QMainWindow):
             # 로그 파일 저장 실패 시 무시 (UI에는 이미 표시됨)
             pass
         
+    def _buffer_result(self, file_path, sheet_name, row, col, value, header_data, row_data):
+        """결과를 버퍼에 누적"""
+        self._result_buffer.append((file_path, sheet_name, row, col, value, header_data, row_data))
+        # 버퍼가 배치 크기에 도달하면 즉시 flush
+        if len(self._result_buffer) >= self._result_batch_size:
+            self._flush_result_buffer()
+
+    def _flush_result_buffer(self):
+        """버퍼에 쌓인 결과를 한 번에 트리에 추가"""
+        if not self._result_buffer:
+            return
+
+        buffer = self._result_buffer
+        self._result_buffer = []
+
+        # 추가 전 파일 노드 수 기록
+        prev_file_count = self.result_model.rowCount()
+
+        # UI 업데이트 일시 중지
+        self.result_tree.setUpdatesEnabled(False)
+        try:
+            for args in buffer:
+                self.add_result(*args)
+        finally:
+            # UI 업데이트 재개 (한 번만 repaint)
+            self.result_tree.setUpdatesEnabled(True)
+
+        # 새로 추가된 파일/시트 노드 자동 확장 (이름만 매칭된 노드는 제외)
+        for i in range(prev_file_count, self.result_model.rowCount()):
+            file_index = self.result_model.index(i, 0)
+            file_data = file_index.data(Qt.UserRole)
+            if isinstance(file_data, dict) and file_data.get('name_match_only'):
+                continue  # 파일 이름만 매칭 — 접기/펴기 불필요
+            self.result_tree.expand(file_index)
+            for j in range(self.result_model.rowCount(file_index)):
+                sheet_index = self.result_model.index(j, 0, file_index)
+                self.result_tree.expand(sheet_index)
+
     def stop_search(self):
         """검색 중지"""
+        if hasattr(self, '_batch_timer') and self._batch_timer.isActive():
+            self._batch_timer.stop()
+            self._flush_result_buffer()
         if self.search_worker and self.search_worker.isRunning():
             self.search_worker.stop()
             # 워커 스레드가 완전히 종료될 때까지 대기 (최대 5초)
@@ -1634,6 +1890,11 @@ class ExcelSearchApp(QMainWindow):
     
     def search_finished(self):
         """검색 완료"""
+        # 남은 버퍼 flush
+        if hasattr(self, '_batch_timer'):
+            self._batch_timer.stop()
+        self._flush_result_buffer()
+
         # 검색 상태 해제
         self.is_searching = False
         
@@ -1646,12 +1907,8 @@ class ExcelSearchApp(QMainWindow):
         self.status_progress_bar.setVisible(False)
         self.status_label.setText("준비")
         
-        # 검색 결과 메시지 표시 (leaf 노드 수 계산)
-        result_count = 0
-        for i in range(self.result_tree.topLevelItemCount()):
-            file_node = self.result_tree.topLevelItem(i)
-            for j in range(file_node.childCount()):
-                result_count += file_node.child(j).childCount()
+        # 검색 결과 메시지 표시
+        result_count = self.result_model.get_total_result_count()
         QMessageBox.information(self, '검색 완료', f'총 {result_count}개의 결과를 찾았습니다.')
 
     def column_number_to_letter(self, col_num):
@@ -1675,16 +1932,11 @@ class ExcelSearchApp(QMainWindow):
         if not keyword or not text:
             return text
 
-        import re
-        # 대소문자 무시하고 검색어를 찾아서 하이라이트
-        pattern = re.escape(keyword)
-        highlighted = re.sub(
-            f'({pattern})',
-            r'<span style="background-color: yellow;">\1</span>',
-            text,
-            flags=re.IGNORECASE
-        )
-        return highlighted
+        if hasattr(self, '_highlight_pattern'):
+            return self._highlight_pattern.sub(
+                r'<span style="background-color: yellow;">\1</span>', text
+            )
+        return text
 
     # 중간 계층(시트/섹션)을 표시할 확장자 집합 — Excel만 시트 레벨 유지
     _FORMATS_WITH_INTERMEDIATE = frozenset({'.xlsx', '.xls', '.xlsm'})
@@ -1693,128 +1945,93 @@ class ExcelSearchApp(QMainWindow):
     _FORMATS_WITH_POSITION_IN_COL0 = frozenset({'.pdf', '.pptx', '.json', '.txt', '.log'})
 
     def add_result(self, file_path, sheet_name, row, col, value, header_data, row_data):
-        """검색 결과를 트리에 추가.
+        """검색 결과를 모델에 추가.
         Excel: 파일 > 시트 > 결과 (3단계)
         그 외: 파일 > 결과 (2단계, 중간 섹션 생략)
+        row == -1: 파일 이름 매칭, row == -2: 시트 이름 매칭
         """
-        # 아이콘이 초기화되지 않았으면 초기화
-        if not hasattr(self, 'excel_icon'):
-            self.init_icons()
-
         file_ext = os.path.splitext(file_path)[1].lower()
+
+        # ── 파일 이름 / 시트 이름 매칭 처리 ──
+        if row == -1:
+            # 파일 이름 매칭
+            search_keyword = getattr(self, 'current_search_text', '')
+            highlighted = self.highlight_keyword_in_text(str(value), search_keyword) if search_keyword else None
+            self.result_model.add_name_match(
+                file_path, file_ext, 'filename', highlighted_text=highlighted)
+            return
+        if row == -2:
+            # 시트 이름 매칭
+            search_keyword = getattr(self, 'current_search_text', '')
+            highlighted = self.highlight_keyword_in_text(str(value), search_keyword) if search_keyword else None
+            self.result_model.add_name_match(
+                file_path, file_ext, 'sheetname', sheet_name=sheet_name,
+                highlighted_text=highlighted)
+            return
+
         show_intermediate = file_ext in self._FORMATS_WITH_INTERMEDIATE
 
-        # ── Level 1: 파일 노드 ───────────────────────────────────────────
-        file_node = None
-        for i in range(self.result_tree.topLevelItemCount()):
-            candidate = self.result_tree.topLevelItem(i)
-            node_data = candidate.data(0, Qt.UserRole)
-            if isinstance(node_data, dict) and node_data.get('file_path') == file_path:
-                file_node = candidate
-                break
-
-        if file_node is None:
-            file_name = os.path.basename(file_path)
-            file_node = QTreeWidgetItem(self.result_tree)
-            file_node.setData(0, Qt.UserRole, {'type': 'file', 'file_path': file_path})
-            file_node.setText(0, file_name)
-            file_node.setIcon(0, self._get_file_icon(file_ext))
-            file_node.setExpanded(True)
-
-        # ── Level 2 (조건부): 시트/섹션 노드 ────────────────────────────
-        if show_intermediate:
-            sheet_node = None
-            for i in range(file_node.childCount()):
-                candidate = file_node.child(i)
-                node_data = candidate.data(0, Qt.UserRole)
-                if isinstance(node_data, dict) and node_data.get('sheet_name') == sheet_name:
-                    sheet_node = candidate
-                    break
-
-            if sheet_node is None:
-                sheet_node = QTreeWidgetItem(file_node)
-                sheet_node.setData(0, Qt.UserRole, {'type': 'sheet', 'sheet_name': sheet_name})
-                sheet_node.setText(0, sheet_name)
-                sheet_node.setExpanded(True)
-
-            result_parent = sheet_node
-        else:
-            result_parent = file_node
-
-        # ── Level 3 (또는 Level 2): 결과 노드 ────────────────────────────
+        # ── 열 헤더 계산 ──
         col_letter = self.column_number_to_letter(col + 1)
         col_header = col_letter
         if header_data is not None and col < len(header_data):
             col_header = f"{header_data[col]} ({col_letter})"
 
-        result_node = QTreeWidgetItem(result_parent)
-
-        # 검색값 (하이라이트 적용) — 'Name' 컬럼(0)에 표시
+        # ── 하이라이트 텍스트 ──
         search_keyword = getattr(self, 'current_search_text', '')
-        str_value = str(value)
+        str_value = value  # file_processor에서 이미 str 변환 완료
+        highlighted_text = None
         if search_keyword and search_keyword.lower() in str_value.lower():
-            highlighted = self.highlight_keyword_in_text(str_value, search_keyword)
-            result_node.setText(0, highlighted)
-            result_node.setData(0, Qt.UserRole + 1, str_value)  # 원본 텍스트 저장
-        else:
-            result_node.setText(0, str_value)
+            highlighted_text = self.highlight_keyword_in_text(str_value, search_keyword)
 
-        # ── Number 컬럼: 포맷별 위치 식별자 ─────────────────────────────
-        # PDF/PPTX: row_data[0]에 페이지/슬라이드 번호가 저장됨 → 추출하여 표시
+        # ── Number 컬럼: 포맷별 위치 식별자 ──
         if file_ext in self._FORMATS_WITH_POSITION_IN_COL0 and row_data and len(row_data) > 0:
             display_number = str(row_data[0])
         else:
             display_number = str(row)
-        result_node.setText(1, display_number)
-        result_node.setTextAlignment(1, Qt.AlignCenter)
 
-        # ── Type 컬럼: 포맷별 의미있는 식별자 ───────────────────────────
+        # ── Type 컬럼: 포맷별 의미있는 식별자 ──
         if file_ext in ('.docx', '.doc'):
-            # DOCX: 테이블 결과는 열 헤더, 단락 결과는 'DOCX'
             display_type = col_header if sheet_name.startswith('Table_') else 'DOCX'
         elif file_ext == '.md':
-            # Markdown: 테이블 결과는 열 헤더, 일반 텍스트 결과는 'Markdown'
             display_type = col_header if sheet_name.startswith('Table_') else 'Markdown'
         elif file_ext in ('.txt', '.log'):
             display_type = 'TXT'
         elif file_ext == '.pdf':
             display_type = 'PDF'
         elif file_ext == '.pptx':
-            # PPTX: 슬라이드 제목(col 1)을 Type으로 표시
             display_type = row_data[1] if row_data and len(row_data) > 1 else 'PPTX'
         elif file_ext in ('.hwp', '.hwx'):
             display_type = 'HWP'
         elif file_ext in ('.json', '.yaml', '.yml', '.xml'):
-            # 구조화 포맷: 괄호(열 문자) 없이 헤더 이름만 표시
             if header_data is not None and col < len(header_data):
                 display_type = str(header_data[col])
             else:
                 display_type = col_letter
         else:
-            # Excel, CSV 등: 열 헤더 (열 문자 포함)
             display_type = col_header
-        result_node.setText(2, display_type)
 
-        # show_sheet_data에 필요한 데이터 저장
-        result_node.setData(0, Qt.UserRole, {
-            'type': 'result',
-            'file_path': file_path,
-            'sheet_name': sheet_name,
-            'row': row,
-            'col_header': col_header,
-        })
+        # ── 모델에 추가 ──
+        self.result_model.add_result(
+            file_path, sheet_name, row, col, value,
+            header_data, row_data, file_ext, show_intermediate,
+            col_header, display_number, display_type, highlighted_text
+        )
 
         # 헤더/행 데이터 캐시
         if header_data is not None and row_data is not None:
             self.cached_row_data[(file_path, sheet_name, row)] = (header_data, row_data)
         
-    def show_sheet_data(self, item, column):
+    def show_sheet_data(self, index):
         """선택한 결과 노드의 행 데이터를 새 창에 표시"""
-        if item is None:
+        if not index.isValid():
             return
 
-        item_data = item.data(0, Qt.UserRole)
+        item_data = index.data(Qt.UserRole)
         if not isinstance(item_data, dict) or item_data.get('type') != 'result':
+            return
+        # 이름 매칭 결과는 행 데이터가 없으므로 건너뜀
+        if item_data.get('is_name_match'):
             return
 
         file_path = item_data['file_path']
@@ -2075,7 +2292,7 @@ class ExcelSearchApp(QMainWindow):
         filters_data = {
             "version": "3.0",
             "filters": filters_list,
-            "last_updated": pd.Timestamp.now().isoformat()
+            "last_updated": datetime.now().isoformat()
         }
 
         try:
@@ -2236,8 +2453,8 @@ class ExcelSearchApp(QMainWindow):
         filters_data = {
             "version": "3.0",
             "filters": filters_list,
-            "exported_at": pd.Timestamp.now().isoformat(),
-            "exported_from": "ExcelFinder"
+            "exported_at": datetime.now().isoformat(),
+            "exported_from": "DocsFinder"
         }
 
         try:
@@ -2428,6 +2645,7 @@ class ExcelSearchApp(QMainWindow):
                 if os.name == 'nt':  # Windows
                     os.startfile(path)
                 elif os.name == 'posix':  # macOS/Linux
+                    import subprocess
                     subprocess.call(['open' if os.uname().sysname == 'Darwin' else 'xdg-open', path])
             else:
                 QMessageBox.warning(self, '경고', f'경로를 찾을 수 없습니다: {path}')
@@ -2444,6 +2662,7 @@ class ExcelSearchApp(QMainWindow):
                 return
 
             if os.name == 'nt':  # Windows
+                import subprocess
                 # 가장 간단하고 안정적인 방법 사용 - subprocess.Popen with detach
                 normalized_path = os.path.normpath(file_path)
                 print(f"DEBUG: Normalized path: {normalized_path}")
@@ -2473,6 +2692,7 @@ class ExcelSearchApp(QMainWindow):
                             QMessageBox.critical(self, '오류', f'파일 위치를 열 수 없습니다: {str(e)}')
 
             elif os.name == 'posix':  # macOS/Linux
+                import subprocess
                 if os.uname().sysname == 'Darwin':  # macOS
                     subprocess.call(['open', '-R', file_path])
                 else:  # Linux
@@ -2486,29 +2706,20 @@ class ExcelSearchApp(QMainWindow):
     def show_results_context_menu(self, position):
         """검색 결과 트리 컨텍스트 메뉴 표시"""
         try:
-            item = self.result_tree.itemAt(position)
-            if not item:
+            index = self.result_tree.indexAt(position)
+            if not index.isValid():
                 return
 
-            item_data = item.data(0, Qt.UserRole)
+            item_data = index.data(Qt.UserRole)
             if not isinstance(item_data, dict):
                 return
 
             # 결과 노드에서 파일 경로 추출
             node_type = item_data.get('type')
-            if node_type == 'result':
-                file_path = item_data['file_path']
-            elif node_type == 'file':
+            if node_type in ('result', 'file'):
                 file_path = item_data['file_path']
             elif node_type == 'sheet':
-                # 부모(파일 노드)에서 file_path 가져오기
-                parent = item.parent()
-                if parent is None:
-                    return
-                parent_data = parent.data(0, Qt.UserRole)
-                if not isinstance(parent_data, dict):
-                    return
-                file_path = parent_data.get('file_path')
+                file_path = item_data.get('file_path')
             else:
                 return
 
@@ -2596,6 +2807,7 @@ class ExcelSearchApp(QMainWindow):
                 # Excel 파일인 경우
                 if os.name == 'nt':  # Windows
                     # Excel로 직접 열기
+                    import subprocess
                     subprocess.Popen([file_path], shell=True)
                 else:
                     # 다른 OS의 경우 기본 프로그램으로 열기

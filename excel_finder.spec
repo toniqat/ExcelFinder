@@ -54,7 +54,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='ExcelFinder',
+    name='DocsFinder',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -75,5 +75,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='ExcelFinder'
+    name='DocsFinder'
 )

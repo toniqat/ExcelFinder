@@ -1,12 +1,33 @@
 from PyQt5.QtCore import QThread, pyqtSignal
 import multiprocessing as mp
-from concurrent.futures import ProcessPoolExecutor, as_completed
+from concurrent.futures import ProcessPoolExecutor, as_completed, BrokenExecutor
 from typing import List, Tuple, Optional
 import psutil
 import os
 
 from file_processor import process_file
 from streaming_search import should_use_streaming, get_optimal_chunk_size
+
+# ── 공유 ProcessPoolExecutor 관리 ──────────────────────────────
+_shared_executor: Optional[ProcessPoolExecutor] = None
+_shared_executor_workers: int = 0
+
+def get_shared_executor(max_workers: int) -> ProcessPoolExecutor:
+    """공유 ProcessPoolExecutor 반환. 워커 수 변경 시 재생성."""
+    global _shared_executor, _shared_executor_workers
+    if _shared_executor is None or _shared_executor_workers != max_workers:
+        shutdown_shared_executor()
+        _shared_executor = ProcessPoolExecutor(max_workers=max_workers)
+        _shared_executor_workers = max_workers
+    return _shared_executor
+
+def shutdown_shared_executor():
+    """공유 executor 종료 (앱 종료 시 호출)"""
+    global _shared_executor, _shared_executor_workers
+    if _shared_executor is not None:
+        _shared_executor.shutdown(wait=False)
+        _shared_executor = None
+        _shared_executor_workers = 0
 
 class ParallelSearchWorker(QThread):
     """병렬 검색 작업을 백그라운드에서 실행하는 스레드"""
@@ -168,56 +189,61 @@ class ParallelSearchWorker(QThread):
             # 작업 목록 생성 (검색 예외 처리 목록 포함)
             tasks = [(file_path, self.search_text, self.exact_match, self.excluded_headers, self.excluded_if_not_empty, self.case_sensitive, self.excluded_paths, self.excluded_files, self.excluded_sheets) for file_path in filtered_files]
 
-            # ProcessPoolExecutor를 사용하여 병렬 처리
-            with ProcessPoolExecutor(max_workers=self.max_workers) as executor:
-                self.executor = executor
-                # 모든 작업을 시작
-                futures = {executor.submit(process_file, task): task for task in tasks}
-                
-                # 완료된 작업을 처리
-                for future in as_completed(futures):
-                    if not self.is_running:
-                        # 즉시 종료 - 대기 중인 작업 취소
-                        for f in futures:
-                            f.cancel()
-                        # 실행 중인 작업 강제 종료
-                        try:
-                            # Python 3.9+에서 지원
-                            executor.shutdown(wait=False, cancel_futures=True)
-                        except TypeError:
-                            # 이전 버전에서는 cancel_futures 파라미터 없음
-                            executor.shutdown(wait=False)
-                        break
-                    
-                    # 현재 처리 중인 파일 정보 업데이트
-                    current_task = futures[future]
-                    current_file_path = current_task[0]  # 첫 번째 요소가 파일 경로
-                    self.current_file_changed.emit(current_file_path)
-                    
-                    # 대용량 파일 처리 상태 확인
-                    if should_use_streaming(current_file_path):
-                        # 대용량 파일에 대한 특별 처리 시간 추가 고려
-                        pass
-                    
+            # 공유 executor 사용 (재생성 없음)
+            try:
+                executor = get_shared_executor(self.max_workers)
+            except BrokenExecutor:
+                # 이전 워커 크래시 시 풀 재생성
+                shutdown_shared_executor()
+                executor = get_shared_executor(self.max_workers)
+            self.executor = executor
+
+            # 모든 작업을 시작
+            futures = {executor.submit(process_file, task): task for task in tasks}
+
+            # 완료된 작업을 처리
+            for future in as_completed(futures):
+                if not self.is_running:
+                    # 즉시 종료 - 대기 중인 작업 취소
+                    for f in futures:
+                        f.cancel()
+                    break
+
+                # 현재 처리 중인 파일 정보 업데이트
+                current_task = futures[future]
+                current_file_path = current_task[0]  # 첫 번째 요소가 파일 경로
+                self.current_file_changed.emit(current_file_path)
+
+                # 대용량 파일 처리 상태 확인
+                if should_use_streaming(current_file_path):
+                    # 대용량 파일에 대한 특별 처리 시간 추가 고려
+                    pass
+
+                try:
                     results, error_msgs = future.result()
-                    
-                    # 결과 처리
-                    for result in results:
-                        if len(result) == 7:  # 새로운 형식 (header_data, row_data 포함)
-                            file_path, sheet_name, row_idx, col_idx, value, header_data, row_data = result
-                            self.result_found.emit(file_path, sheet_name, row_idx, col_idx, value, header_data, row_data)
-                        else:  # 이전 형식 (header_data, row_data 없음)
-                            file_path, sheet_name, row_idx, col_idx, value = result
-                            self.result_found.emit(file_path, sheet_name, row_idx, col_idx, value, None, None)
-                    
-                    # 오류 처리
-                    for file_path, error_msg in error_msgs:
-                        self.error_occurred.emit(file_path, error_msg)
-                    
-                    # 진행 상황 업데이트 (즉시 업데이트)
-                    completed_files += 1
-                    progress = int(completed_files / total_files * 100)
-                    self.progress_update.emit(progress)
+                except BrokenExecutor:
+                    # 워커 크래시 시 풀 재생성 후 계속
+                    shutdown_shared_executor()
+                    self.error_occurred.emit(current_file_path, "워커 프로세스 크래시 — 풀 재생성됨")
+                    continue
+
+                # 결과 처리
+                for result in results:
+                    if len(result) == 7:  # 새로운 형식 (header_data, row_data 포함)
+                        file_path, sheet_name, row_idx, col_idx, value, header_data, row_data = result
+                        self.result_found.emit(file_path, sheet_name, row_idx, col_idx, value, header_data, row_data)
+                    else:  # 이전 형식 (header_data, row_data 없음)
+                        file_path, sheet_name, row_idx, col_idx, value = result
+                        self.result_found.emit(file_path, sheet_name, row_idx, col_idx, value, None, None)
+
+                # 오류 처리
+                for file_path, error_msg in error_msgs:
+                    self.error_occurred.emit(file_path, error_msg)
+
+                # 진행 상황 업데이트 (즉시 업데이트)
+                completed_files += 1
+                progress = int(completed_files / total_files * 100)
+                self.progress_update.emit(progress)
             
         except Exception as e:
             self.error_occurred.emit("검색 오류", f"병렬 검색 중 예외 발생: {str(e)}")
@@ -233,7 +259,4 @@ class ParallelSearchWorker(QThread):
 
         # 즉시 Excel 프로세스 정리
         self.kill_new_excel_processes()
-
-        # 실행 중인 executor 종료
-        if self.executor:
-            self.executor.shutdown(wait=False)
+        # executor는 shutdown하지 않음 — 다음 검색에서 재사용

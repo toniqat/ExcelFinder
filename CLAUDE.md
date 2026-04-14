@@ -1,7 +1,7 @@
-# Excel Finder - Project Summary
+# DocsFinder - Project Summary
 
 ## Overview
-Excel Finder is a PyQt5-based desktop application that provides fast and efficient searching within Excel files. It supports searching across multiple Excel files simultaneously using parallel processing for improved performance.
+DocsFinder is a PyQt5-based desktop application that provides fast and efficient searching within document files. It supports searching across multiple document files simultaneously using parallel processing for improved performance.
 
 ## Project Structure
 
@@ -21,6 +21,7 @@ Excel Finder is a PyQt5-based desktop application that provides fast and efficie
 - `search_exception_dialog_improved.py` - Advanced search exception configuration dialog
 - `ui_components.py` - Reusable UI components
 - `sheet_viewer.py` - Excel sheet viewing and data display
+- `result_model.py` - QAbstractItemModel for virtual-scrolling result tree (QTreeView)
 
 #### Search and Processing
 - `search_worker.py` - Parallel search worker threads
@@ -130,7 +131,7 @@ Excel Finder is a PyQt5-based desktop application that provides fast and efficie
 - Memory-efficient data handling
 
 ### Maintenance
-- Settings are saved to `config/excel_finder_settings.txt`
+- Settings are saved to `config/docs_finder_settings.txt`
 - Logs are stored in `logs/` directory
 - All user preferences persist between sessions
 - Clear separation of concerns for easy maintenance

@@ -51,7 +51,7 @@ class SettingsManager:
         # 새로운 JSON 설정 파일
         self.json_settings_file = self.settings_dir / "app_settings.json"
         # 기존 텍스트 설정 파일 (마이그레이션용)
-        self.legacy_settings_file = self.settings_dir / "excel_finder_settings.txt"
+        self.legacy_settings_file = self.settings_dir / "docs_finder_settings.txt"
         
     def load_settings(self) -> AppSettings:
         """설정 로드 (JSON -> 레거시 순서로 시도)"""

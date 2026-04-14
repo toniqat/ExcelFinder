@@ -193,6 +193,20 @@ def should_skip_row_by_value(row_data, header_row, excluded_if_not_empty: List[s
     return False
 
 
+def find_header_index(header_row, target_header: str):
+    """헤더 행에서 대상 헤더의 컬럼 인덱스를 찾아 반환. 없으면 None."""
+    for i, header_value in enumerate(header_row):
+        header_str = str(header_value)
+        base_header = header_str
+        if '.' in header_str:
+            parts = header_str.rsplit('.', 1)
+            if len(parts) == 2 and parts[1].isdigit():
+                base_header = parts[0]
+        if base_header == target_header or header_str == target_header:
+            return i
+    return None
+
+
 def get_excluded_column_indices(header_row, excluded_headers: List[str]) -> List[int]:
     """제외할 컬럼의 인덱스 목록 반환
     

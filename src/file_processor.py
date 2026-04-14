@@ -1,13 +1,15 @@
 import os
 import pandas as pd
+import numpy as np
 from pathlib import Path
 from typing import List, Tuple, Optional
 
 from excel_utils import is_large_file
-from file_cache import get_file_cache
+from file_cache import get_file_cache, get_df_cache
 from search_utils import (
     get_excluded_column_indices,
-    should_skip_row_by_value, debug_exclusion_info, should_exclude_column
+    should_skip_row_by_value, debug_exclusion_info, should_exclude_column,
+    parse_data_filter_setting, find_header_index
 )
 from plugin_registry import get_plugin_registry
 
@@ -31,7 +33,7 @@ def _should_exclude_by_filter(text, filter_string):
 
 
 def _matches(str_value: str, search_text: str, exact_match: bool, case_sensitive: bool) -> bool:
-    """검색 조건에 따라 값이 일치하는지 확인"""
+    """검색 조건에 따라 값이 일치하는지 확인 (호환용 — 스트리밍 폴백)"""
     search_text_trimmed = str(search_text).strip()
     if exact_match:
         if case_sensitive:
@@ -41,6 +43,87 @@ def _matches(str_value: str, search_text: str, exact_match: bool, case_sensitive
         if case_sensitive:
             return search_text_trimmed in str_value
         return search_text_trimmed.lower() in str_value.lower()
+
+
+def _get_skip_row_mask(df, header_row, excluded_if_not_empty):
+    """제외할 행의 boolean mask를 반환 (True = 건너뛸 행).
+    벡터화된 연산으로 행 단위 루프를 제거한다."""
+    if not excluded_if_not_empty:
+        return pd.Series(False, index=df.index)
+
+    skip_mask = pd.Series(False, index=df.index)
+    for filter_setting in excluded_if_not_empty:
+        parsed = parse_data_filter_setting(filter_setting)
+        col_idx = find_header_index(header_row, parsed['header'])
+        if col_idx is None or col_idx >= len(df.columns):
+            continue
+        col = df.iloc[:, col_idx]
+        if parsed['filter_type'] == 'any':
+            # 어떠한 값이건 있을 때 → 해당 행 제외
+            col_str = col.astype(str).str.strip()
+            skip_mask = skip_mask | (col.notna() & (col_str != '') & (col_str.str.lower() != 'nan'))
+        elif parsed['filter_type'] == 'specific':
+            # 지정한 값이 있을 때만
+            skip_mask = skip_mask | (col.astype(str).str.strip() == parsed['specific_value'])
+    return skip_mask
+
+
+def _vectorized_search(df, search_text, exact_match, case_sensitive, excluded_col_set):
+    """벡터화된 검색으로 매칭되는 (row_idx, col_idx) 위치 리스트와 전체 str DataFrame을 반환.
+
+    pandas str 연산을 사용하여 셀 단위 파이썬 루프를 완전히 제거한다.
+
+    Returns:
+        (matches, df_str_full)
+        - matches: [(row_idx, col_idx), ...]
+        - df_str_full: 전체 DataFrame의 str 변환 결과 (결과 생성 시 재사용)
+    """
+    # 전체 DataFrame의 str 버전 생성 (결과 추출용으로 재사용)
+    df_str_full = df.astype(str)
+    for col in df_str_full.columns:
+        df_str_full[col] = df_str_full[col].str.strip()
+
+    if df.empty:
+        return [], df_str_full
+
+    # 검색 대상 컬럼만 선택
+    all_cols = list(range(len(df.columns)))
+    search_cols = [i for i in all_cols if i not in excluded_col_set]
+    if not search_cols:
+        return [], df_str_full
+
+    df_str = df_str_full.iloc[:, search_cols]
+
+    # NaN 문자열 및 빈 문자열 마스크
+    valid_mask = pd.DataFrame(True, index=df_str.index, columns=df_str.columns)
+    for col in df_str.columns:
+        valid_mask[col] = (df_str[col] != '') & (df_str[col].str.lower() != 'nan')
+
+    # 검색 매칭
+    search_trimmed = search_text.strip()
+    if exact_match:
+        if case_sensitive:
+            match_mask = df_str.eq(search_trimmed) & valid_mask
+        else:
+            search_lower = search_trimmed.lower()
+            match_mask = pd.DataFrame(False, index=df_str.index, columns=df_str.columns)
+            for col in df_str.columns:
+                match_mask[col] = (df_str[col].str.lower() == search_lower) & valid_mask[col]
+    else:
+        if case_sensitive:
+            match_mask = pd.DataFrame(False, index=df_str.index, columns=df_str.columns)
+            for col in df_str.columns:
+                match_mask[col] = df_str[col].str.contains(search_trimmed, na=False, regex=False) & valid_mask[col]
+        else:
+            match_mask = pd.DataFrame(False, index=df_str.index, columns=df_str.columns)
+            for col in df_str.columns:
+                match_mask[col] = df_str[col].str.contains(search_trimmed, case=False, na=False, regex=False) & valid_mask[col]
+
+    # 매칭 위치 추출 — numpy로 빠르게
+    rows, cols = np.where(match_mask.values)
+    # cols는 df_str(subset) 기준이므로 원래 인덱스로 변환
+    original_cols = [search_cols[c] for c in cols]
+    return list(zip(df.index[rows].tolist(), original_cols)), df_str_full
 
 
 def process_file(args) -> Tuple[List, List]:
@@ -61,24 +144,26 @@ def process_file(args) -> Tuple[List, List]:
     try:
         file_ext = Path(file_path).suffix.lower()
 
+        # ── 파일 이름 매칭 ──────────────────────────────────────
+        file_basename = os.path.basename(file_path)
+        if _matches(file_basename, search_text, exact_match, case_sensitive):
+            # row=-1 은 파일 이름 매칭을 나타냄
+            results.append((file_path, '', -1, -1, file_basename, None, None))
+
         # 플러그인 레지스트리에서 파서 조회 (child process: lazy discover)
         registry = get_plugin_registry()
         if not registry._discovered:
             registry.discover()
-            # 플러그인 로드 실패는 파일 단위 오류가 아니므로 error_msgs에 추가하지 않음.
-            # 메인 프로세스 시작 시 이미 보고됨.
 
         plugin = registry.get_parser(file_ext)
         if plugin is None:
             error_msgs.append((file_path, f"지원하지 않는 파일 형식: {file_ext}"))
             return results, error_msgs
 
-        # 캐시 확인 (Excel 플러그인만 의미 있음)
+        # 캐시 확인
         cache = get_file_cache()
         cached_metadata = cache.get_metadata(file_path)
-
-        # 캐시된 시트 정보가 있으면 메타데이터 재사용 (Excel 전용)
-        # 실제 파일 읽기는 플러그인에서 처리
+        df_cache = get_df_cache()
 
         # 스트리밍 vs 전체 로드 결정
         use_streaming = (plugin.supports_streaming(file_path) and
@@ -87,16 +172,24 @@ def process_file(args) -> Tuple[List, List]:
         if use_streaming:
             section_iter = plugin.stream_file(file_path)
         else:
-            try:
-                sections = plugin.read_file(file_path)
-            except PermissionError:
-                error_msgs.append((file_path, "PermissionError: 이미 열고 있는 파일을 닫은 후 시도해주세요"))
-                return results, error_msgs
-            except Exception as e:
-                error_msgs.append((file_path, f"파일 열기 실패: {str(e)}"))
-                return results, error_msgs
+            # DataFrame 디스크 캐시 조회 (pickle)
+            cached_sections = df_cache.get(file_path)
+            if cached_sections is not None:
+                sections = cached_sections
+            else:
+                try:
+                    sections = plugin.read_file(file_path)
+                except PermissionError:
+                    error_msgs.append((file_path, "PermissionError: 이미 열고 있는 파일을 닫은 후 시도해주세요"))
+                    return results, error_msgs
+                except Exception as e:
+                    error_msgs.append((file_path, f"파일 열기 실패: {str(e)}"))
+                    return results, error_msgs
 
-            # 캐시 갱신 (시트 이름 저장)
+                # DataFrame 캐시에 저장
+                df_cache.set(file_path, sections)
+
+            # 메타데이터 캐시 갱신 (시트 이름 저장)
             if sections and not cached_metadata:
                 sheet_names = [s[0] for s in sections]
                 cache.set_metadata(file_path, sheet_names)
@@ -112,18 +205,21 @@ def process_file(args) -> Tuple[List, List]:
             if should_exclude_sheet:
                 continue
 
+            # ── 시트 이름 매칭 ──────────────────────────────────
+            if _matches(sheet_name, search_text, exact_match, case_sensitive):
+                # row=-2 는 시트 이름 매칭을 나타냄
+                results.append((file_path, sheet_name, -2, -1, sheet_name, None, None))
+
             if df.empty:
                 continue
 
             # 헤더 행 결정
-            # Excel 플러그인: df는 header=None (첫 행이 데이터에 포함됨)
-            # 기타 플러그인: headers 리스트가 별도로 제공됨
             header_row = headers if headers else []
 
-            # 값이 있으면 제외할 열 인덱스 계산
-            excluded_if_not_empty_columns = get_excluded_column_indices(
-                header_row, excluded_if_not_empty
-            )
+            # 제외 컬럼 인덱스를 set으로 사전 계산 (O(1) lookup)
+            excluded_col_set = set(get_excluded_column_indices(
+                header_row, excluded_headers
+            ))
 
             if os.getenv('EXCEL_FINDER_DEBUG') == '1':
                 debug_info = debug_exclusion_info(header_row, excluded_headers, excluded_if_not_empty)
@@ -131,35 +227,31 @@ def process_file(args) -> Tuple[List, List]:
                 print(f"  제외될 컬럼: {debug_info['excluded_columns']}")
                 print(f"  값 있으면 제외될 컬럼: {debug_info['excluded_if_not_empty_columns']}")
 
-            for row_idx, row in df.iterrows():
-                # 행 필터링 (excluded_if_not_empty)
-                if should_skip_row_by_value(row, header_row, excluded_if_not_empty):
-                    if os.getenv('EXCEL_FINDER_DEBUG') == '1':
-                        print(f"    [DEBUG] 행 {row_idx} 스킵 (데이터 필터 조건)")
+            # ── 벡터화 검색 ──────────────────────────────────────────
+            # 1) 행 필터 마스크 생성 (벡터화)
+            skip_mask = _get_skip_row_mask(df, header_row, excluded_if_not_empty)
+            df_filtered = df[~skip_mask]
+
+            if df_filtered.empty:
+                continue
+
+            # 2) 벡터화 검색 수행 (df_str도 함께 반환하여 재변환 제거)
+            matches, df_str = _vectorized_search(
+                df_filtered, search_text, exact_match, case_sensitive, excluded_col_set
+            )
+
+            # 3) 결과 생성 — 이미 변환된 df_str 재사용 (str() 재변환 없음)
+            header_data = [str(h) if h is not None else "" for h in header_row]
+            for row_idx, col_idx in matches:
+                try:
+                    str_value = df_str.iat[
+                        df_str.index.get_loc(row_idx), col_idx
+                    ]
+                    row_data = df_str.loc[row_idx].tolist()
+                    results.append((file_path, sheet_name, row_idx, col_idx,
+                                    str_value, header_data, row_data))
+                except (KeyError, IndexError):
                     continue
-
-                for col_idx, value in enumerate(row):
-                    # 열 필터링 (excluded_headers)
-                    if col_idx < len(header_row) and should_exclude_column(
-                            header_row[col_idx], excluded_headers):
-                        continue
-
-                    if value is None:
-                        continue
-
-                    try:
-                        str_value = str(value).strip()
-                    except (ValueError, TypeError, AttributeError):
-                        continue
-
-                    if not str_value or str_value.lower() == 'nan':
-                        continue
-
-                    if _matches(str_value, search_text, exact_match, case_sensitive):
-                        header_data = [str(h) if h is not None else "" for h in header_row]
-                        row_data = [str(v) if v is not None else "" for v in row]
-                        results.append((file_path, sheet_name, row_idx, col_idx,
-                                        str_value, header_data, row_data))
 
     except Exception as e:
         error_msgs.append((file_path, f"파일 처리 중 예기치 못한 오류: {str(e)}"))

@@ -8,7 +8,9 @@ from pathlib import Path
 from dataclasses import dataclass, asdict
 from threading import Lock
 
-from constants import MAX_CACHE_SIZE, LARGE_FILE_THRESHOLD
+import pickle
+import tempfile
+from constants import MAX_CACHE_SIZE, LARGE_FILE_THRESHOLD, MAX_DF_CACHE_ENTRIES, DF_CACHE_DIR, DF_CACHE_MAX_FILE_SIZE
 
 
 @dataclass
@@ -198,8 +200,109 @@ class FileCache:
             }
 
 
+class DataFrameCache:
+    """DataFrame 디스크 캐시 — pickle 형식으로 파싱된 DataFrame을 저장하여 재검색 시 로딩 속도 향상"""
+
+    def __init__(self, cache_dir: str = None):
+        if cache_dir is None:
+            project_root = Path(__file__).parent.parent
+            cache_dir = project_root / "config" / "cache" / DF_CACHE_DIR
+        self.cache_dir = Path(cache_dir)
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self._lock = Lock()
+
+    def _cache_key(self, file_path: str) -> str:
+        """파일 경로 기반 캐시 키 생성"""
+        norm = os.path.normpath(file_path)
+        return hashlib.md5(norm.encode()).hexdigest()
+
+    def get(self, file_path: str):
+        """캐시된 섹션 목록 반환. 없거나 만료되면 None.
+
+        Returns:
+            list of (sheet_name, headers, DataFrame) 또는 None
+        """
+        cache_path = self.cache_dir / f"{self._cache_key(file_path)}.pkl"
+        if not cache_path.exists():
+            return None
+        try:
+            mtime = os.path.getmtime(file_path)
+            size = os.path.getsize(file_path)
+            with open(cache_path, 'rb') as f:
+                cached = pickle.load(f)
+            if cached['mtime'] == mtime and cached['size'] == size:
+                return cached['sections']
+        except Exception:
+            # 캐시 파일이 손상된 경우 삭제
+            try:
+                cache_path.unlink(missing_ok=True)
+            except Exception:
+                pass
+        return None
+
+    def set(self, file_path: str, sections):
+        """섹션 목록을 캐시에 저장.
+
+        대용량 파일(>50MB)은 캐시하지 않는다.
+        임시 파일 → rename 패턴으로 멀티프로세스 안전성 확보.
+        """
+        try:
+            file_size = os.path.getsize(file_path)
+            if file_size > DF_CACHE_MAX_FILE_SIZE:
+                return
+
+            cache_path = self.cache_dir / f"{self._cache_key(file_path)}.pkl"
+            data = {
+                'mtime': os.path.getmtime(file_path),
+                'size': file_size,
+                'sections': sections,
+            }
+
+            # 임시 파일에 먼저 쓰고 rename (원자적 교체)
+            fd, tmp_path = tempfile.mkstemp(dir=str(self.cache_dir), suffix='.tmp')
+            try:
+                with os.fdopen(fd, 'wb') as f:
+                    pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+                # Windows에서는 대상이 존재하면 rename 실패하므로 먼저 제거
+                if cache_path.exists():
+                    cache_path.unlink()
+                os.rename(tmp_path, str(cache_path))
+            except Exception:
+                # 실패 시 임시 파일 정리
+                try:
+                    os.unlink(tmp_path)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+    def cleanup(self, max_entries: int = None):
+        """오래된 캐시 파일 정리"""
+        if max_entries is None:
+            max_entries = MAX_DF_CACHE_ENTRIES
+        try:
+            files = sorted(self.cache_dir.glob("*.pkl"),
+                           key=lambda p: p.stat().st_mtime)
+            if len(files) > max_entries:
+                for f in files[:len(files) - max_entries]:
+                    f.unlink(missing_ok=True)
+        except Exception:
+            pass
+
+    def clear(self):
+        """전체 DataFrame 캐시 삭제"""
+        import shutil
+        try:
+            if self.cache_dir.exists():
+                shutil.rmtree(self.cache_dir)
+                self.cache_dir.mkdir(parents=True, exist_ok=True)
+        except Exception:
+            pass
+
+
 # 전역 캐시 인스턴스
 _file_cache: Optional[FileCache] = None
+_df_cache: Optional[DataFrameCache] = None
 
 def get_file_cache() -> FileCache:
     """전역 파일 캐시 인스턴스 반환"""
@@ -207,3 +310,11 @@ def get_file_cache() -> FileCache:
     if _file_cache is None:
         _file_cache = FileCache()
     return _file_cache
+
+
+def get_df_cache() -> DataFrameCache:
+    """전역 DataFrame 캐시 인스턴스 반환"""
+    global _df_cache
+    if _df_cache is None:
+        _df_cache = DataFrameCache()
+    return _df_cache

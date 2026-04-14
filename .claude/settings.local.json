@@ -27,7 +27,16 @@
       "Bash(for f:*)",
       "Bash(do echo:*)",
       "Read(//f/Project/ExcelFinder/plugins/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(venv/Scripts/python -c ':*)",
+      "Bash(timeout 15 venv/Scripts/python main.py)",
+      "Bash(./venv/Scripts/python -c \"from src.result_model import ResultTreeModel; print\\('OK'\\)\")",
+      "Bash(mv config/excel_finder_settings.txt config/doc_finder_settings.txt)",
+      "Bash(mv config/excel_finder_settings_backup.txt config/doc_finder_settings_backup.txt)",
+      "Bash(mv config/excel_finder_settings_test.txt config/doc_finder_settings_test.txt)",
+      "Bash(mv config/doc_finder_settings.txt config/docs_finder_settings.txt)",
+      "Bash(mv config/doc_finder_settings_backup.txt config/docs_finder_settings_backup.txt)",
+      "Bash(mv config/doc_finder_settings_test.txt config/docs_finder_settings_test.txt)"
     ],
     "deny": [],
     "ask": []

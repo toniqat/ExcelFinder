@@ -14,7 +14,7 @@ class LoadingDialog(QDialog):
         self.min_display_time = 0.5  # 최소 500ms 표시
         
     def init_ui(self):
-        self.setWindowTitle('ExcelFinder 시작 중...')
+        self.setWindowTitle('DocsFinder 시작 중...')
         self.setFixedSize(400, 200)
         self.setWindowFlags((Qt.Dialog | Qt.CustomizeWindowHint | Qt.WindowTitleHint | Qt.WindowStaysOnTopHint) & ~Qt.WindowContextHelpButtonHint)
         self.setModal(True)
@@ -30,7 +30,7 @@ class LoadingDialog(QDialog):
         layout.setContentsMargins(20, 20, 20, 20)
         
         # 제목
-        title_label = QLabel('ExcelFinder v3.1')
+        title_label = QLabel('DocsFinder v3.1')
         title_font = QFont()
         title_font.setPointSize(14)
         title_font.setBold(True)

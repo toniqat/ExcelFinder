@@ -27,7 +27,10 @@ CSV_SEPARATORS = [',', ';', '\t', '|']
 # 메모리 최적화 상수
 LARGE_FILE_THRESHOLD = 50 * 1024 * 1024  # 50MB
 CHUNK_SIZE = 1000  # 스트리밍 처리 시 청크 크기
-MAX_CACHE_SIZE = 100  # 캐시할 최대 파일 수
+MAX_CACHE_SIZE = 100  # 캐시할 최대 파일 수 (메타데이터)
+MAX_DF_CACHE_ENTRIES = 200  # DataFrame 디스크 캐시 최대 파일 수
+DF_CACHE_DIR = "dataframes"  # DataFrame 캐시 서브디렉토리명
+DF_CACHE_MAX_FILE_SIZE = 50 * 1024 * 1024  # DataFrame 캐시 대상 최대 파일 크기 (50MB)
 
 # UI 반응성 상수
 UI_UPDATE_INTERVAL = 50  # ms
