@@ -95,17 +95,23 @@ def _read_excel_with_temp_file(file_path: str, file_ext: str) -> Tuple[pd.ExcelF
     """임시 파일로 복사 후 Excel 읽기"""
     temp_dir = tempfile.mkdtemp()
     temp_file = os.path.join(temp_dir, os.path.basename(file_path))
-    
+
     try:
         shutil.copy2(file_path, temp_file)
         engine = 'xlrd' if file_ext == '.xls' else 'openpyxl'
-        xl = pd.ExcelFile(temp_file, engine=engine)
-        sheet_names = xl.sheet_names.copy()  # 리스트 복사
-        
+        xl_temp = pd.ExcelFile(temp_file, engine=engine)
+        try:
+            sheet_names = xl_temp.sheet_names.copy()
+        finally:
+            try:
+                xl_temp.close()
+            except Exception:
+                pass
+
         # 원본 파일로 ExcelFile 재생성 (임시 파일은 정리됨)
         xl_original = pd.ExcelFile(file_path, engine=engine)
         return xl_original, sheet_names
-        
+
     finally:
         # 임시 디렉토리 정리
         try:
@@ -137,14 +143,20 @@ def read_excel_sheet_safe(excel_file: pd.ExcelFile, sheet_name: str,
 def get_file_sheets(file_path: str) -> List[str]:
     """파일의 시트 목록 반환"""
     file_ext = Path(file_path).suffix.lower()
-    
+
     if file_ext in SUPPORTED_CSV_EXTENSIONS:
         # CSV/TSV는 단일 시트 (파일명 사용)
         return [Path(file_path).stem]
     elif file_ext in SUPPORTED_EXCEL_EXTENSIONS:
         try:
-            _, sheet_names = read_excel_file_safe(file_path)
-            return sheet_names
+            xl, sheet_names = read_excel_file_safe(file_path)
+            try:
+                return sheet_names
+            finally:
+                try:
+                    xl.close()
+                except Exception:
+                    pass
         except Exception as e:
             raise ExcelProcessingError(f"시트 목록 조회 실패: {str(e)}")
     else:

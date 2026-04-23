@@ -67,7 +67,10 @@ def stream_search_excel(file_path: str, search_text: str, exact_match: bool,
     """Excel 파일 스트리밍 검색"""
     try:
         xl, sheet_names = read_excel_file_safe(file_path)
-        
+    except Exception as e:
+        raise ExcelProcessingError(f"Excel 스트리밍 검색 실패: {str(e)}")
+
+    try:
         for sheet_name in sheet_names:
             # 대용량 파일의 경우 스트리밍 처리
             if is_large_file(file_path):
@@ -79,19 +82,24 @@ def stream_search_excel(file_path: str, search_text: str, exact_match: bool,
                 # 작은 파일은 전체 로드
                 df = xl.parse(sheet_name, na_filter=False, header=None)
                 if not df.empty:
-                    # Get actual header values from the first row
                     header_row = df.iloc[0].values if len(df) > 0 else []
                     excluded_columns = get_excluded_column_indices(header_row, excluded_headers)
                     excluded_if_not_empty_columns = get_excluded_column_indices(header_row, excluded_if_not_empty)
-                    
+
                     yield from _search_dataframe_chunk(
                         df, sheet_name, file_path, search_text, exact_match,
                         excluded_columns, excluded_if_not_empty_columns,
                         header_row, 0
                     )
-                    
+    except ExcelProcessingError:
+        raise
     except Exception as e:
         raise ExcelProcessingError(f"Excel 스트리밍 검색 실패: {str(e)}")
+    finally:
+        try:
+            xl.close()
+        except Exception:
+            pass
 
 
 def _stream_search_excel_sheet(xl: pd.ExcelFile, sheet_name: str, file_path: str,

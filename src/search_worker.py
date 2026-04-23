@@ -5,8 +5,25 @@ from typing import List, Tuple, Optional
 import psutil
 import os
 
-from file_processor import process_file
+from file_processor import process_file, process_file_simple, _set_search_context
 from streaming_search import should_use_streaming, get_optimal_chunk_size
+
+# ── 워커 프로세스 초기화 (Step 2·3) ───────────────────────────────
+def _noop(_=None):
+    """프리워밍용 no-op 태스크"""
+    return None
+
+
+def _worker_initializer():
+    """자식 프로세스 초기화: 플러그인 탐색 + 캐시 로드를 프로세스 시작 시점에 실행"""
+    from plugin_registry import get_plugin_registry
+    from file_cache import get_file_cache, get_df_cache
+    registry = get_plugin_registry()
+    if not registry._discovered:
+        registry.discover()
+    get_file_cache()
+    get_df_cache()
+
 
 # ── 공유 ProcessPoolExecutor 관리 ──────────────────────────────
 _shared_executor: Optional[ProcessPoolExecutor] = None
@@ -17,7 +34,10 @@ def get_shared_executor(max_workers: int) -> ProcessPoolExecutor:
     global _shared_executor, _shared_executor_workers
     if _shared_executor is None or _shared_executor_workers != max_workers:
         shutdown_shared_executor()
-        _shared_executor = ProcessPoolExecutor(max_workers=max_workers)
+        _shared_executor = ProcessPoolExecutor(
+            max_workers=max_workers,
+            initializer=_worker_initializer,
+        )
         _shared_executor_workers = max_workers
     return _shared_executor
 
@@ -28,6 +48,17 @@ def shutdown_shared_executor():
         _shared_executor.shutdown(wait=False)
         _shared_executor = None
         _shared_executor_workers = 0
+
+
+def warmup_executor(max_workers: int = None) -> None:
+    """앱 시작 시 ProcessPool 워커를 미리 스폰.
+    _worker_initializer가 플러그인·캐시 초기화도 함께 수행한다."""
+    if max_workers is None:
+        max_workers = max(2, mp.cpu_count() // 2)
+    executor = get_shared_executor(max_workers)
+    for _ in range(max_workers):
+        executor.submit(_noop)
+
 
 class ParallelSearchWorker(QThread):
     """병렬 검색 작업을 백그라운드에서 실행하는 스레드"""
@@ -177,29 +208,48 @@ class ParallelSearchWorker(QThread):
 
     def run(self):
         try:
-            # 검색 시작 전 Excel 프로세스 목록 저장
-            self.initial_excel_processes = self.get_excel_processes()
-
             # 파일 및 경로 필터링 적용
             filtered_files = self.apply_file_and_path_filters(self.files)
+
+            # Excel 파일이 포함된 경우에만 프로세스 스캔 (Step 4: 조건부 psutil)
+            _excel_exts = ('.xls', '.xlsx', '.xlsm', '.xlsb')
+            if any(f.lower().endswith(_excel_exts) for f in filtered_files):
+                self.initial_excel_processes = self.get_excel_processes()
+            else:
+                self.initial_excel_processes = set()
 
             completed_files = 0
             total_files = len(filtered_files)
 
-            # 작업 목록 생성 (검색 예외 처리 목록 포함)
-            tasks = [(file_path, self.search_text, self.exact_match, self.excluded_headers, self.excluded_if_not_empty, self.case_sensitive, self.excluded_paths, self.excluded_files, self.excluded_sheets) for file_path in filtered_files]
-
             # 공유 executor 사용 (재생성 없음)
-            try:
-                executor = get_shared_executor(self.max_workers)
-            except BrokenExecutor:
-                # 이전 워커 크래시 시 풀 재생성
-                shutdown_shared_executor()
-                executor = get_shared_executor(self.max_workers)
+            executor = get_shared_executor(self.max_workers)
             self.executor = executor
 
-            # 모든 작업을 시작
-            futures = {executor.submit(process_file, task): task for task in tasks}
+            # 검색 컨텍스트를 모든 워커에 설정 (Step 5: 태스크 피클링 크기 축소)
+            ctx = {
+                'search_text': self.search_text,
+                'exact_match': self.exact_match,
+                'case_sensitive': self.case_sensitive,
+                'excluded_headers': self.excluded_headers,
+                'excluded_if_not_empty': self.excluded_if_not_empty,
+                'excluded_paths': self.excluded_paths,
+                'excluded_files': self.excluded_files,
+                'excluded_sheets': self.excluded_sheets,
+            }
+            for f in [executor.submit(_set_search_context, ctx) for _ in range(self.max_workers)]:
+                f.result()
+
+            # 파일 경로만으로 태스크 구성 (Step 5)
+            try:
+                futures = {executor.submit(process_file_simple, fp): fp for fp in filtered_files}
+            except BrokenExecutor:
+                # 이전 워커 크래시 시 풀 재생성 후 재시도
+                shutdown_shared_executor()
+                executor = get_shared_executor(self.max_workers)
+                self.executor = executor
+                for f in [executor.submit(_set_search_context, ctx) for _ in range(self.max_workers)]:
+                    f.result()
+                futures = {executor.submit(process_file_simple, fp): fp for fp in filtered_files}
 
             # 완료된 작업을 처리
             for future in as_completed(futures):
@@ -210,13 +260,11 @@ class ParallelSearchWorker(QThread):
                     break
 
                 # 현재 처리 중인 파일 정보 업데이트
-                current_task = futures[future]
-                current_file_path = current_task[0]  # 첫 번째 요소가 파일 경로
+                current_file_path = futures[future]
                 self.current_file_changed.emit(current_file_path)
 
                 # 대용량 파일 처리 상태 확인
                 if should_use_streaming(current_file_path):
-                    # 대용량 파일에 대한 특별 처리 시간 추가 고려
                     pass
 
                 try:

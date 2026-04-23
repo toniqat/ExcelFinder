@@ -48,14 +48,20 @@ class ExcelPlugin(FormatPlugin):
         large_file_mode = is_large_file(file_path)
         xl, sheet_names = read_excel_file_safe(file_path)
 
-        results = []
-        for sheet_name in sheet_names:
-            df = read_excel_sheet_safe(xl, sheet_name, large_file_mode)
-            if df.empty:
-                continue
-            header_row = list(df.iloc[0].values) if len(df) > 0 else []
-            headers = [str(h) if h is not None else "" for h in header_row]
-            results.append((sheet_name, headers, df))
+        try:
+            results = []
+            for sheet_name in sheet_names:
+                df = read_excel_sheet_safe(xl, sheet_name, large_file_mode)
+                if df.empty:
+                    continue
+                header_row = list(df.iloc[0].values) if len(df) > 0 else []
+                headers = [str(h) if h is not None else "" for h in header_row]
+                results.append((sheet_name, headers, df))
+        finally:
+            try:
+                xl.close()
+            except Exception:
+                pass
 
         return results
 
@@ -70,21 +76,33 @@ class ExcelPlugin(FormatPlugin):
         large_file_mode = is_large_file(file_path)
         xl, sheet_names = read_excel_file_safe(file_path)
 
-        for sheet_name in sheet_names:
-            df = read_excel_sheet_safe(xl, sheet_name, large_file_mode)
-            if df.empty:
-                continue
-            header_row = list(df.iloc[0].values) if len(df) > 0 else []
-            headers = [str(h) if h is not None else "" for h in header_row]
+        try:
+            for sheet_name in sheet_names:
+                df = read_excel_sheet_safe(xl, sheet_name, large_file_mode)
+                if df.empty:
+                    continue
+                header_row = list(df.iloc[0].values) if len(df) > 0 else []
+                headers = [str(h) if h is not None else "" for h in header_row]
 
-            for i in range(0, max(1, len(df)), chunk_size):
-                chunk = df.iloc[i:i + chunk_size]
-                yield sheet_name, headers, chunk
+                for i in range(0, max(1, len(df)), chunk_size):
+                    chunk = df.iloc[i:i + chunk_size]
+                    yield sheet_name, headers, chunk
+        finally:
+            try:
+                xl.close()
+            except Exception:
+                pass
 
     def get_metadata(self, file_path: str) -> dict:
         from excel_utils import read_excel_file_safe
         try:
-            _, sheet_names = read_excel_file_safe(file_path)
-            return {'sheet_names': sheet_names}
+            xl, sheet_names = read_excel_file_safe(file_path)
+            try:
+                return {'sheet_names': sheet_names}
+            finally:
+                try:
+                    xl.close()
+                except Exception:
+                    pass
         except Exception:
             return {'sheet_names': []}

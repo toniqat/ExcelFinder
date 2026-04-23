@@ -135,21 +135,18 @@ class FileCache:
             del self._cache[cache_key]
     
     def load_cache(self):
-        """캐시 파일에서 로드"""
+        """캐시 파일에서 로드 — is_valid() 검사는 최초 조회 시점으로 지연"""
         try:
             if self.cache_file.exists():
                 with open(self.cache_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
-                    
+
                     for cache_key, metadata_dict in data.items():
                         try:
-                            metadata = FileMetadata(**metadata_dict)
-                            # 유효한 캐시만 로드
-                            if metadata.is_valid():
-                                self._cache[cache_key] = metadata
+                            self._cache[cache_key] = FileMetadata(**metadata_dict)
                         except Exception:
                             continue
-                            
+
         except Exception as e:
             print(f"캐시 로드 실패: {e}")
     

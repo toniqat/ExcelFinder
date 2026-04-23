@@ -1,9 +1,0 @@
-last_directory=C:/Users/jinsu_kim/Documents/Perforce_Trunk/Trunk\Shared\Data\XLS
-search_mode_exact=True
-worker_count=20
-apply_exception=True
-case_sensitive=False
-expanded_paths=XLS|XLS\Shop
-search_keyword=Task
-filter_enabled=False
-column_widths=142,142,71,71,409

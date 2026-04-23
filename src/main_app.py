@@ -358,6 +358,37 @@ class PersistentCheckMenu(QMenu):
             super().mouseReleaseEvent(event)
 
 
+class FileCollectorWorker(QThread):
+    """백그라운드에서 디렉터리를 탐색하여 검색 대상 파일 목록을 수집 (Step 1)"""
+    files_collected = pyqtSignal(list)
+    dir_scanned = pyqtSignal(str, int)  # (directory, file_count)
+
+    def __init__(self, directories, initial_files, extensions):
+        super().__init__()
+        self.directories = directories
+        self.initial_files = list(initial_files)
+        self.extensions = extensions
+
+    def run(self):
+        files = list(self.initial_files)
+        seen = set(files)
+        for directory in self.directories:
+            count = 0
+            try:
+                for root, _, filenames in os.walk(directory):
+                    for fname in filenames:
+                        if fname.lower().endswith(self.extensions):
+                            fp = os.path.join(root, fname)
+                            if fp not in seen:
+                                files.append(fp)
+                                seen.add(fp)
+                                count += 1
+            except Exception:
+                pass
+            self.dir_scanned.emit(directory, count)
+        self.files_collected.emit(files)
+
+
 class ExcelSearchApp(QMainWindow):
     def __init__(self, loading_dialog=None):
         super().__init__()
@@ -366,9 +397,12 @@ class ExcelSearchApp(QMainWindow):
         # 기본 속성 초기화
         self.files = []
         self.search_worker = None
+        self._file_collector = None
         self.file_sheet_data = {}  # {file_path: {sheet_name: dataframe}}
         self.cached_row_data = {}  # 검색 결과에 대한 캐시된 행 데이터 저장 {(file_path, sheet_name, row_idx): (header_data, row_data)}
         self.actual_root_path = ""  # 실제 루트 폴더 경로 (간소화된 표시와 별도로 저장)
+        self._result_buffer = []  # 검색 결과 배치 버퍼
+        self._result_batch_size = 100
         
         # 설정 파일 경로 (config 폴더로 이동)
         self.settings_file = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "docs_finder_settings.txt")
@@ -428,10 +462,23 @@ class ExcelSearchApp(QMainWindow):
         if self.loading_dialog:
             self.loading_dialog.update_progress(97, "마지막 설정 복원 중...", "폴더 정보 로딩")
         self.load_drives()
-    
+
+        # 8단계: ProcessPool 프리워밍 (Step 2 — UI 표시 후 백그라운드 실행)
+        QTimer.singleShot(500, self._warmup_process_pool)
+
+    def _warmup_process_pool(self):
+        """앱 시작 후 ProcessPool 워커를 미리 스폰하여 첫 검색 지연을 제거"""
+        from search_worker import warmup_executor
+        max_workers = self.worker_count.value() if hasattr(self, 'worker_count') else None
+        warmup_executor(max_workers)
+
     def on_close_event(self, event):
         """애플리케이션 종료 시 설정 저장"""
         self.save_settings()
+        # 검색 중이면 워커를 먼저 중지하여 파일 핸들 및 Excel 프로세스 정리
+        if hasattr(self, 'search_worker') and self.search_worker and self.search_worker.isRunning():
+            self.search_worker.stop()
+            self.search_worker.wait(3000)
         from search_worker import shutdown_shared_executor
         shutdown_shared_executor()
         event.accept()
@@ -584,7 +631,7 @@ class ExcelSearchApp(QMainWindow):
 
                 # 컬럼 넓이 저장
                 column_widths = []
-                for i in range(5):  # 5개 컬럼
+                for i in range(3):  # 3개 컬럼
                     column_widths.append(str(self.result_tree.header().sectionSize(i)))
                 f.write(f"column_widths={','.join(column_widths)}\n")
 
@@ -1602,114 +1649,99 @@ class ExcelSearchApp(QMainWindow):
             self.start_search()
     
     def start_search(self):
-        """검색 시작"""
+        """검색 시작 — 파일 수집은 FileCollectorWorker(백그라운드)에 위임 (Step 1)"""
         search_text = self.search_input.text()
-        self.current_search_text = search_text  # 현재 검색어 저장
-        # 하이라이트 패턴 사전 컴파일
+        self.current_search_text = search_text
         import re
         self._highlight_pattern = re.compile(
             f'({re.escape(search_text)})', flags=re.IGNORECASE
         )
         if not search_text:
             QMessageBox.warning(self, '경고', '검색할 키워드를 입력해주세요.')
-            self.search_input.setFocus()  # 입력 커서를 검색 입력 필드로 이동
+            self.search_input.setFocus()
             return
-            
-        # 선택된 아이템 확인
+
         selected_items = self.dir_tree.selectedItems()
         if not selected_items:
             QMessageBox.warning(self, '경고', '검색할 폴더 또는 파일을 선택해주세요.')
             return
-        
-        # 오류 로그 초기화
+
         self.error_log.clear()
-        
-        # 검색 상태 설정
         self.is_searching = True
-        
-        # UI 상태 업데이트
         self.search_stop_btn.setText('중지')
         self.dir_tree.setEnabled(False)
-        
-        # 결과 트리 초기화
         self.result_model.clear()
         self._sticky_overlay.hide()
-
-        # 상태 바에 진행 상황 표시
         self.status_progress_bar.setValue(0)
         self.status_progress_bar.setVisible(True)
-        self.status_label.setText("검색 준비 중...")
-        
-        # 선택된 폴더와 엑셀 파일 분리
+        self.status_label.setText("파일 목록 수집 중...")
+
         selected_dirs = []
         selected_excel_files = []
-        
         for item in selected_items:
             path = self.get_full_path(item)
             item_data = item.data(0, Qt.UserRole)
             is_file = item_data.get('is_file', False) if isinstance(item_data, dict) else False
-            
             if is_file:
-                # 활성화된 형식 파일인지 확인
                 if path.lower().endswith(self._get_active_extensions()):
                     selected_excel_files.append(path)
             else:
-                # 폴더인 경우
                 if os.path.isdir(path):
                     selected_dirs.append(path)
-        
-        # 중복 검색 방지: 상위 폴더가 이미 선택된 경우 하위 폴더 제외
+
         filtered_dirs = self.filter_nested_directories(selected_dirs)
-        
-        # 로그에 선택된 폴더 기록
+
         if filtered_dirs:
             self.error_log.append("<div style='color:#2980b9; font-weight:bold; margin-top:5px; padding-top:5px;'>선택된 검색 폴더:</div>")
             for dir_path in filtered_dirs:
                 self.error_log.append(f"<div style='color:#2980b9; margin-left:10px;'>{dir_path}</div>")
-        
-        # 로그에 선택된 파일 기록
         if selected_excel_files:
             self.error_log.append("<div style='color:#9b59b6; font-weight:bold; margin-top:5px; padding-top:5px;'>선택된 파일:</div>")
             for file_path in selected_excel_files:
-                file_name = os.path.basename(file_path)
-                self.error_log.append(f"<div style='color:#9b59b6; margin-left:10px;'>{file_name}</div>")
-        
+                self.error_log.append(f"<div style='color:#9b59b6; margin-left:10px;'>{os.path.basename(file_path)}</div>")
         self.error_log.append("<div style='margin-bottom:10px;'></div>")
-        
-        # 검색할 엑셀 파일 목록 초기화
-        self.files = []
-        
-        # 선택된 엑셀 파일 추가
-        for file_path in selected_excel_files:
-            if file_path not in self.files:
-                self.files.append(file_path)
-        
-        # 선택된 디렉토리에서 엑셀 파일 목록 수집
-        for dir_path in filtered_dirs:
-            self.collect_excel_files(dir_path)
-        
-        if not self.files:
-            QMessageBox.warning(self, '경고', '선택한 폴더에 검색 가능한 파일이 없거나, 파일을 선택하지 않았습니다.\n형식 필터에서 검색할 파일 형식이 선택되어 있는지 확인하세요.')
+
+        # 파일 수집을 백그라운드 스레드에 위임 (Step 1: UI 블로킹 제거)
+        self._file_collector = FileCollectorWorker(
+            filtered_dirs, selected_excel_files, self._get_active_extensions()
+        )
+        self._file_collector.dir_scanned.connect(self._log_dir_scan)
+        self._file_collector.files_collected.connect(self._on_files_collected)
+        self._file_collector.start()
+
+    def _log_dir_scan(self, directory, count):
+        """FileCollectorWorker 디렉터리 스캔 완료 시 로그 기록"""
+        self.error_log.append(
+            f"<div style='color:#27ae60; margin-top:3px; padding-top:3px;'>"
+            f"검색 폴더: {directory} - 파일 {count}개 발견</div>"
+        )
+
+    def _on_files_collected(self, files):
+        """파일 목록 수집 완료 후 검색 워커 시작 (Step 1 콜백)"""
+        self._file_collector = None
+        self.files = files
+
+        if not files:
+            QMessageBox.warning(
+                self, '경고',
+                '선택한 폴더에 검색 가능한 파일이 없거나, 파일을 선택하지 않았습니다.\n'
+                '형식 필터에서 검색할 파일 형식이 선택되어 있는지 확인하세요.'
+            )
             self.search_finished()
             return
-        
-        # 검색 스레드 시작
-        exact_match = self.search_mode_btn.isChecked()  # True: 값 일치, False: 값 포함
-        
-        # 검색 예외 처리 적용 여부 확인 (필터 버튼 상태에 따라)
+
+        search_text = self.search_input.text()
+        exact_match = self.search_mode_btn.isChecked()
         apply_exception = self.filter_enabled_btn.isChecked()
-        
-        # 검색 예외 처리를 적용하지 않는 경우 빈 리스트 전달
         excluded_headers = self.excluded_headers if apply_exception else []
         excluded_if_not_empty = self.excluded_if_not_empty if apply_exception else []
         excluded_paths = self.excluded_paths if apply_exception else []
         excluded_files = self.excluded_files if apply_exception else []
         excluded_sheets = self.excluded_sheets if apply_exception else []
 
-        # 병렬 처리 스레드 사용
         worker_count = self.worker_count.value()
         self.search_worker = ParallelSearchWorker(
-            self.files,
+            files,
             search_text,
             exact_match,
             worker_count,
@@ -1720,11 +1752,10 @@ class ExcelSearchApp(QMainWindow):
             excluded_files,
             excluded_sheets
         )
-        # 결과 배치 버퍼 초기화
         self._result_buffer = []
         self._result_batch_size = 100
         self._batch_timer = QTimer()
-        self._batch_timer.setInterval(50)  # 50ms마다 배치 flush
+        self._batch_timer.setInterval(50)
         self._batch_timer.timeout.connect(self._flush_result_buffer)
         self._batch_timer.start()
 
@@ -1732,11 +1763,10 @@ class ExcelSearchApp(QMainWindow):
         self.search_worker.progress_update.connect(self.update_progress)
         self.search_worker.error_occurred.connect(self.log_error)
         self.search_worker.search_completed.connect(self.search_finished)
-
-        # 현재 처리 중인 파일 정보 연결 (search_worker.py에 구현 필요)
         if hasattr(self.search_worker, 'current_file_changed'):
             self.search_worker.current_file_changed.connect(self.update_current_file)
 
+        self.status_label.setText("검색 중...")
         self.search_worker.start()
     
     def collect_excel_files(self, directory):
@@ -1855,9 +1885,6 @@ class ExcelSearchApp(QMainWindow):
         buffer = self._result_buffer
         self._result_buffer = []
 
-        # 추가 전 파일 노드 수 기록
-        prev_file_count = self.result_model.rowCount()
-
         # UI 업데이트 일시 중지
         self.result_tree.setUpdatesEnabled(False)
         try:
@@ -1867,8 +1894,8 @@ class ExcelSearchApp(QMainWindow):
             # UI 업데이트 재개 (한 번만 repaint)
             self.result_tree.setUpdatesEnabled(True)
 
-        # 새로 추가된 파일/시트 노드 자동 확장 (이름만 매칭된 노드는 제외)
-        for i in range(prev_file_count, self.result_model.rowCount()):
+        # 모든 파일/시트 노드 자동 확장 (이름만 매칭된 노드는 제외)
+        for i in range(self.result_model.rowCount()):
             file_index = self.result_model.index(i, 0)
             file_data = file_index.data(Qt.UserRole)
             if isinstance(file_data, dict) and file_data.get('name_match_only'):
@@ -1883,6 +1910,13 @@ class ExcelSearchApp(QMainWindow):
         if hasattr(self, '_batch_timer') and self._batch_timer.isActive():
             self._batch_timer.stop()
             self._flush_result_buffer()
+        # 파일 수집 단계에서 중지 요청 시 (Step 1)
+        if self._file_collector and self._file_collector.isRunning():
+            self._file_collector.terminate()
+            self._file_collector.wait(1000)
+            self._file_collector = None
+            self.search_finished()
+            return
         if self.search_worker and self.search_worker.isRunning():
             self.search_worker.stop()
             # 워커 스레드가 완전히 종료될 때까지 대기 (최대 5초)

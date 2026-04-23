@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo      ExcelFinder Build Script v3.0
+echo      DocsFinder Build Script v3.0
 echo ========================================
 echo.
 
@@ -26,48 +26,61 @@ if exist __pycache__ rmdir /s /q __pycache__
 if exist src\__pycache__ rmdir /s /q src\__pycache__
 
 :: Build application
-echo [3/5] Building ExcelFinder application...
-pyinstaller excel_finder.spec
+echo [3/5] Building DocsFinder application...
+venv\Scripts\pyinstaller.exe excel_finder.spec
 
 :: Check if build was successful
-if not exist "dist\ExcelFinder\ExcelFinder.exe" (
+if not exist "dist\DocsFinder\DocsFinder.exe" (
     echo.
-    echo ERROR: Build failed! ExcelFinder.exe not found.
+    echo ERROR: Build failed! DocsFinder.exe not found.
     pause
     exit /b 1
 )
 
 :: Copy config and icon folders to root level (outside _internal)
 echo [4/5] Moving config and icon folders to root level...
-if exist "dist\ExcelFinder\_internal\config\" (
-    xcopy "dist\ExcelFinder\_internal\config" "dist\ExcelFinder\config\" /E /I /Y >nul
+if exist "dist\DocsFinder\_internal\config\" (
+    xcopy "dist\DocsFinder\_internal\config" "dist\DocsFinder\config\" /E /I /Y >nul
     echo ✓ Config folder copied to root
 ) else (
     echo ✗ Config folder not found in _internal!
 )
 
-if exist "dist\ExcelFinder\_internal\icon\" (
-    xcopy "dist\ExcelFinder\_internal\icon" "dist\ExcelFinder\icon\" /E /I /Y >nul
+if exist "dist\DocsFinder\_internal\icon\" (
+    xcopy "dist\DocsFinder\_internal\icon" "dist\DocsFinder\icon\" /E /I /Y >nul
     echo ✓ Icon folder copied to root
 ) else (
     echo ✗ Icon folder not found in _internal!
 )
 
+if exist "dist\DocsFinder\_internal\plugins\" (
+    xcopy "dist\DocsFinder\_internal\plugins" "dist\DocsFinder\plugins\" /E /I /Y >nul
+    echo ✓ Plugins folder copied to root
+) else (
+    echo ✗ Plugins folder not found in _internal!
+)
+
 :: Verify folder structure
 echo [5/5] Verifying build structure...
-if exist "dist\ExcelFinder\config\" (
+if exist "dist\DocsFinder\config\" (
     echo ✓ Config folder found in root
 ) else (
     echo ✗ Config folder missing!
 )
 
-if exist "dist\ExcelFinder\icon\" (
+if exist "dist\DocsFinder\icon\" (
     echo ✓ Icon folder found in root
 ) else (
     echo ✗ Icon folder missing!
 )
 
-if exist "dist\ExcelFinder\_internal\" (
+if exist "dist\DocsFinder\plugins\" (
+    echo ✓ Plugins folder found in root
+) else (
+    echo ✗ Plugins folder missing!
+)
+
+if exist "dist\DocsFinder\_internal\" (
     echo ✓ Internal files found
 ) else (
     echo ✗ Internal files missing!
@@ -77,8 +90,8 @@ echo.
 echo ========================================
 echo Build completed successfully!
 echo.
-echo Output location: dist\ExcelFinder\
-echo Executable: dist\ExcelFinder\ExcelFinder.exe
+echo Output location: dist\DocsFinder\
+echo Executable: dist\DocsFinder\DocsFinder.exe
 echo ========================================
 echo.
 pause

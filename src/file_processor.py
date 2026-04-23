@@ -126,6 +126,33 @@ def _vectorized_search(df, search_text, exact_match, case_sensitive, excluded_co
     return list(zip(df.index[rows].tolist(), original_cols)), df_str_full
 
 
+# ── 프로세스 전역 검색 컨텍스트 (Step 5) ──────────────────────────
+_SEARCH_CTX: dict = {}
+
+
+def _set_search_context(ctx: dict) -> bool:
+    """자식 프로세스의 검색 컨텍스트를 설정. search_worker가 각 워커에 한 번씩 호출."""
+    global _SEARCH_CTX
+    _SEARCH_CTX = ctx
+    return True
+
+
+def process_file_simple(file_path: str) -> Tuple[List, List]:
+    """파일 경로만 받아 프로세스 전역 컨텍스트로 검색. process_file의 간소화된 진입점."""
+    ctx = _SEARCH_CTX
+    return process_file((
+        file_path,
+        ctx.get('search_text', ''),
+        ctx.get('exact_match', False),
+        ctx.get('excluded_headers', []),
+        ctx.get('excluded_if_not_empty', []),
+        ctx.get('case_sensitive', False),
+        ctx.get('excluded_paths', []),
+        ctx.get('excluded_files', []),
+        ctx.get('excluded_sheets', []),
+    ))
+
+
 def process_file(args) -> Tuple[List, List]:
     """
     개별 파일을 처리하는 함수 (멀티프로세싱용)
