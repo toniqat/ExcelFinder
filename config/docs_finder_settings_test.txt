@@ -1,7 +1,0 @@
-last_directory=D:/Python Project/ExcelFinder
-search_mode_exact=False
-worker_count=20
-excluded_headers=#|exact^^^메모용|any|^^^비고|any|
-excluded_if_not_empty=Unused|any|^^^Status|specific|1^^^Category|any|
-apply_exception=True
-expanded_paths=ExcelFinder
